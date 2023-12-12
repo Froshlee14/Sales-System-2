@@ -62,7 +62,15 @@ USE proyecto_ventas;
 	
 	);
 
+	CREATE TABLE categoria(
+		id_categoria INT NOT NULL AUTO_INCREMENT,
+		nombre VARCHAR(100),
+		descripcion VARCHAR(200),
+		
+		PRIMARY KEY (id_categoria)
+	);
 
+	
     INSERT INTO categoria(nombre,descripcion)
         VALUES 
     ('Enlatados','Comida o viveres enlatados'),
@@ -73,13 +81,6 @@ USE proyecto_ventas;
     ('Productos de limpieza','Productos para el aseo del hogar'),
     ('Frituras','Cualquier tipo de snack');
 	
-	CREATE TABLE categoria(
-		id_categoria INT NOT NULL AUTO_INCREMENT,
-		nombre VARCHAR(100),
-		descripcion VARCHAR(200),
-		
-		PRIMARY KEY (id_categoria)
-	);
 
 	CREATE TABLE producto(
 		id_producto INT NOT NULL AUTO_INCREMENT,
@@ -114,5 +115,3 @@ USE proyecto_ventas;
 		FOREIGN KEY (id_venta) REFERENCES venta(id_venta),
 		FOREIGN KEY (id_producto) REFERENCES producto(id_producto)
 	);
-
-information_schemauser

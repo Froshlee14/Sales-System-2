@@ -12,6 +12,7 @@
 ?>
 
         <div class=" table-responsive m-4">
+        <a class="btn btn-primary" href="./?view=proveedores&opt=add"> Nuevo </a>
 
             <?php
                 if(count($listaProveedor)>0){
@@ -20,7 +21,6 @@
             <div class= "card iq-document-card">
                 <div class="iq-side-content sticky-xl-top d-flex justify-content-between align-items-center m-4">
                     <h2>Proveedores</h2>
-                    <a class="btn btn-primary" href="./?view=proveedores&opt=add"> Nuevo </a>
                 </div>
                 <table  class="table table-striped">
                     <thead>
