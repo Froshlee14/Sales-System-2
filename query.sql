@@ -61,6 +61,17 @@ USE proyecto_ventas;
 		FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente) 
 	
 	);
+
+
+    INSERT INTO categoria(nombre,descripcion)
+        VALUES 
+    ('Enlatados','Comida o viveres enlatados'),
+    ('Bebidas','Bebidas a cualquier temperatura'),
+    ('Bebidas Energeticas','Bebidas con ingredientes a base de cafeina'),
+    ('Comida instantanea','Comida de preparacion rapida'),
+    ('Dulces','Golosinas de cualquier tipo'),
+    ('Productos de limpieza','Productos para el aseo del hogar'),
+    ('Frituras','Cualquier tipo de snack');
 	
 	CREATE TABLE categoria(
 		id_categoria INT NOT NULL AUTO_INCREMENT,
