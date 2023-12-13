@@ -59,7 +59,8 @@ class ProductoData extends Extra{
                                     precio= $this->precio, 
                                     stock= $this->stock,
                                     id_proveedor= $this->id_proveedor,
-                                    id_categoria= $this->id_categoria 
+                                    id_categoria= $this->id_categoria,
+                                    status= $this->status 
                                     where id_producto =" .$this->id_producto;
     
 		return Executor::doit($sql);
