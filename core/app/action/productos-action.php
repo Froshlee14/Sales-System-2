@@ -31,6 +31,7 @@
             $p->stock = $_POST["stock"];
 			$p->id_proveedor = $_POST["id_proveedor"];
             $p->id_categoria = $_POST["id_categoria"];
+			$p->status = $_POST["estado"];
 
 			$p-> update();
 			
