@@ -20,6 +20,7 @@
             <div class= "card iq-document-card">
                 <div class="iq-side-content sticky-xl-top d-flex justify-content-between align-items-center m-4">
                     <h2><?php echo "Ventas"; ?></h2>
+                    <a class="btn btn-primary" href="./?view=ventas&opt=add"> Nuevo </a>
                 </div>
                 <table  class="table table-striped">
                     <thead>
@@ -56,7 +57,7 @@
                                 <td> <?php echo $row->fecha;?> </td>
                                 <td> <?php echo $prod->nombre;?> </td>
                                 <td> <?php echo $detvent->cantidad;?> </td>
-                                <td> <?php echo $prod->precio;?> </td>
+                                <td> <?php echo $row->monto;?> </td>
                                 <td> <?php echo $row->descuento;?> </td>
                                 <td> <?php echo $detvent->monto;?> </td>
 
@@ -66,7 +67,7 @@
                                 <td> <?php echo $prov->nombre;?> </td>
                                 <td> <?php echo $cat->nombre?> </td> -->
 
-                                <td> <a href="./?view=ventas&opt=edit&id= <?php echo $row->id_venta;?> "> Ver/Editar </a></td>
+                                <td> <a href="./?view=ventas&opt=edit&id= <?php echo $row->id_venta;?> "> Ver detalles </a></td>
                                 <!-- <td> <a href="./?action=users&opt=delete&id= <?php echo $row->id;?> " class"btn btn-warning"> Eliminar </a></td> -->
                             </tr>
                         
@@ -92,6 +93,7 @@
 	<?php
 		}
 	}
+    
 	if(isset($_GET["opt"]) && $_GET["opt"] == "add"){
 
         $listaVentas = VentaData::getVenta();
@@ -103,9 +105,7 @@
 	?>
 
             <div class=" table-responsive mx-4">
-                <div class="iq-side-content sticky-xl-top d-flex justify-content-between align-items-center">
-                    <h2> Nueva venta</h2>
-                </div>
+
                 <br>
                 <div class="card">
                     <div class="card-body">			
@@ -134,15 +134,22 @@
 
                             <div class="mb-3">
                                 <label for="Select" class="form-label">Producto</label>
-                                <select id="Select" class="form-select" name = "id_producto">
+                                <select id="producto_select" class="form-select" name = "id_producto" onchange="tuFuncion()">
                                 <?php
                                     foreach($listaProductos as $key => $prod){
                                 ?>
-                                    <option value = "<?php echo $prod->id_producto ?>"> <?php echo $prod->nombre ?> </option>
+                                    <option value = "<?php echo $prod->id_producto ?>" data-precio="<?php echo $prod->precio; ?>">
+                                        <?php echo $prod->nombre ?>
+                                    </option>
                                 <?php
                                     }
                                 ?>
                                 </select>
+                            </div>
+
+                            <div class="mb-3 form-floating">
+                                <input type="number" readonly class="form-control" name="monto" id="monto">
+                                <label for="floatingInput1">Monto</label>
                             </div>
 
 
@@ -151,10 +158,6 @@
                                 <label for="floatingInput1">Cantidad</label>
                             </div> 
 
-                            <div class="mb-3 form-floating">
-                                <input type="number" readonly class="form-control" name="monto">
-                                <label for="floatingInput1">Precio</label>
-                            </div>
 
                             <div class="mb-3 form-floating">
                                 <input type="number" class="form-control" name="descuento">
@@ -177,6 +180,13 @@
             </div>
         </div>
 	
+        <script>
+            function tuFuncion() {
+                var selectElement = document.getElementById('producto_select');
+                var inputText = document.getElementById("monto");
+                inputText.value = selectElement.options[selectElement.selectedIndex].getAttribute('data-precio');
+            }
+        </script>
 
 	
 	<?php
@@ -203,7 +213,7 @@
 
             <div class=" table-responsive m-4">
                 <div class="iq-side-content sticky-xl-top d-flex justify-content-between align-items-center">
-                    <h2> Editar Venta</h2>
+                    <h2> Detalles de Venta</h2>
                 </div>
                 <br>		
                 <div class="card">
@@ -212,7 +222,7 @@
 
                         <div class="mb-3">
                                 <label for="Select" class="form-label">Cliente</label>
-                                <select id="Select" class="form-select" name = "id_cliente">
+                                <select id="Select" disabled class="form-select" name = "id_cliente">
 
                                 <?php
                                     foreach($listaClientes as $key => $cl){
@@ -225,14 +235,14 @@
                         </div>
 
 						<div class="mb-3 form-floating">
-							<input type="date" class="form-control" name="fecha" value= "<?php echo $vent->fecha?>">
+							<input type="date" disabled class="form-control" name="fecha" value= "<?php echo $vent->fecha?>">
 							<label for="floatingInput1">Fecha</label>
 						</div>
 
 
                         <div class="mb-3">
                             <label for="Select" class="form-label">Producto</label>
-                            <select id="Select" class="form-select" name = "id_producto">
+                            <select id="Select" disabled class="form-select" name = "id_producto">
 
 
                             <?php
@@ -247,24 +257,19 @@
 
 
 						<div class="mb-3 form-floating">
-							<input type="number" class="form-control" name="cantidad" value= "<?php echo $detvent->cantidad?>">
+							<input type="number" disabled class="form-control" name="cantidad" value= "<?php echo $detvent->cantidad?>">
 							<label for="floatingInput1">Cantidad</label>
 						</div> 
 
 						<div class="mb-3 form-floating">
-							<input type="number" class="form-control" name="monto" value= "<?php echo $vent->monto?>">
+							<input type="number" disabled class="form-control" name="monto" value= "<?php echo $vent->monto?>">
 							<label for="floatingInput1">Monto</label>
 						</div>
 
                         <div class="mb-3 form-floating">
-							<input type="number" class="form-control" name="descuento" value= "<?php echo $vent->descuento?>">
+							<input type="number" disabled class="form-control" name="descuento" value= "<?php echo $vent->descuento?>">
 							<label for="floatingInput1">Descuento</label>
 						</div>
-                        
-                        <!-- <div class="mb-3 form-floating">
-							<input type="number" class="form-control" name="monto total">
-							<label for="floatingInput1">Monto final</label>
-						</div> -->
 
 
                         <div class="mb-3 form-floating">
@@ -274,7 +279,6 @@
 
 
 						<div class="mb-3 form-floating text-end">
-		    				<button type="submit" class="btn btn-primary">Actualizar</button>
 
                             <a href="./?action=ventas&opt=delete&id= <?php echo $vent->id_venta;?> " class = "btn btn-danger"> Eliminar </a>
 						</div>	
@@ -284,6 +288,10 @@
                     </div>
                 </div>
             </div>
+
+
+
+
 
 <?php
 		}

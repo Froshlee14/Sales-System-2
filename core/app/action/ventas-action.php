@@ -27,7 +27,7 @@
 			$dv->id_producto= $_POST["id_producto"];
 			$dv->cantidad= $_POST["cantidad"];
 			$dv->id_venta= $respuesta[1];
-			$dv->monto= ($_POST["monto"] - $_POST["descuento"])*$_POST["cantidad"];
+			$dv->monto= ($_POST["monto"] - $_POST["descuento"]) * $_POST["cantidad"];
 
 			$dv->add();
 
