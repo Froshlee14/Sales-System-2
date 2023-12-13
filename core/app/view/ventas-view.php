@@ -76,7 +76,7 @@ if(isset($_GET["opt"]) && $_GET["opt"] == "add"){
     <br>
     <div class="card">
         <div class="card-body">
-            <form action="./?action=ventas" method="post" id="ventasForm" class="needs-validation" novalidate>
+            <form action="./?action=ventas&opt=add" method="post" id="ventasForm" class="needs-validation" novalidate>
                 <div class="mb-3">
                     <label for="cliente" class="form-label">Cliente</label>
                     <select class="form-select" name="id_cliente" id="cliente" required>
@@ -139,7 +139,7 @@ if(isset($_GET["opt"]) && $_GET["opt"] == "add"){
                 </div>
 
                 <div class="mb-3 form-floating text-end">
-                    <input type="submit" value="Agregar" name="opt" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary">Agregar</button>
                 </div>
             </form>
         </div>
