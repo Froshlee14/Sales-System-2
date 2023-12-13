@@ -85,7 +85,7 @@ USE proyecto_ventas;
 		nombre VARCHAR(50),
 		precio INT,
 		stock INT,
-		status int default 1
+		status int default 1,
 		id_proveedor INT,
 		id_categoria INT,
 		
