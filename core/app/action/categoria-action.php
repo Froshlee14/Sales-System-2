@@ -15,7 +15,7 @@
 			
 			$ca-> addCat();
 			echo "agregado";
-			//Core::addToastr('success','Usuario agregado on exito');
+			Core::addToastr('success','Categoria agregado con exito');
 			Core::redir("./?view=categoria&opt=all");
 			
 		}
