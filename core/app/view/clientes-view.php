@@ -114,44 +114,53 @@
                 <div class="card">
                 
                     <div class="card-body">		
-                        <form method="post" action="./?action=clientes&opt=add">
+                        <form method="post" action="./?action=clientes&opt=add"  class="needs-validation" novalidate>
+
                             <h5 class="card-title"> Datos generales </h5>
+
                             <div class="mb-3 form-floating">
-                                <input type="text" class="form-control" id="nombre" placeholder="Nombre" name="nombre">
+                                <input type="text" class="form-control" id="nombre" placeholder="Nombre" name="nombre" required>
                                 <label for="floatingInput1">Nombre</label>
+                                <div class="invalid-feedback">Por favor, complete este campo.</div>
                             </div>
 
                             <div class="mb-3 form-floating">
-                                <input type="text" class="form-control" id="numero_telefonico" placeholder="Numero telefonico" name="numero_telefonico">
+                                <input type="text" class="form-control" id="numero_telefonico" placeholder="Numero telefonico" name="numero_telefonico" required>
                                 <label for="floatingInput1">Numero telefonico</label>
+                                <div class="invalid-feedback">Por favor, complete este campo.</div>
                             </div>
+
                             <h5 class="card-title"> Direccion </h5>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3 form-floating">
-                                        <input type="text" class="form-control" id="calle" placeholder="Calle" name="calle">
+                                        <input type="text" class="form-control" id="calle" placeholder="Calle" name="calle" required>
                                         <label for="floatingInput1">Calle</label>
+                                        <div class="invalid-feedback">Por favor, complete este campo.</div>
                                     </div>
                                 </div>
 
                             <div class="col-md-6">
                                     <div class="mb-3 form-floating">
-                                        <input type="text" class="form-control" id="numero" placeholder="Numero" name="numero">
+                                        <input type="text" class="form-control" id="numero" placeholder="Numero" name="numero" required>
                                         <label for="floatingInput1">Numero</label>
+                                        <div class="invalid-feedback">Por favor, complete este campo.</div>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="mb-3 form-floating">
-                                <input type="tetx" class="form-control" id="colonia" placeholder="Colonia"name="colonia">
+                                <input type="tetx" class="form-control" id="colonia" placeholder="Colonia"name="colonia" required>
                                 <label for="floatingInput1">Colonia</label>
+                                <div class="invalid-feedback">Por favor, complete este campo.</div>
                             </div>
-
 
                             <div class="mb-3 form-floating">
-                                <input type="tetx" class="form-control" id="ciudad" placeholder="Ciudad"name="ciudad">
+                                <input type="tetx" class="form-control" id="ciudad" placeholder="Ciudad"name="ciudad" required>
                                 <label for="floatingInput1">Ciudad</label>
+                                <div class="invalid-feedback">Por favor, complete este campo.</div>
                             </div>
+
                             <div class="mb-3 form-floating text-end">
                                 <button type="submit" class="btn btn-primary">Agregar</button>
                             </div>	
@@ -192,7 +201,7 @@
                 <div class="card">
                 <div class="card-body">
 
-					<form method="post" action="./?action=clientes&opt=update">
+					<form method="post" action="./?action=clientes&opt=update"  class="needs-validation" novalidate>
                         <h5> Datos generales </h5>
 
                         <div class="mb-3 form-floating">
@@ -200,51 +209,60 @@
 						</div>
 
 						<div class="mb-3 form-floating">
-							<input type="text" class="form-control" name="nombre" value="<?php  echo$cliente->nombre; ?>">
+							<input type="text" class="form-control" name="nombre" value="<?php  echo$cliente->nombre; ?>" required>
 							<label for="floatingInput1">Nombre</label>
+                            <div class="invalid-feedback">Por favor, complete este campo.</div>
 						</div>
 
                         <div class="mb-3">
                                 <label for="Select" class="form-label mx-1">Estado</label>
-                                <select id="Select" class="form-select" name = "estado">
+                                <select id="Select" class="form-select" name = "estado" required>
                                     <option value = "1" selected> Activo </option>
                                     <option value = "0"> Inactivo </option>
                                 </select>
+                                <div class="invalid-feedback">Por favor, selecciona un campo.</div>
                         </div>
                         
 
                         <!-- <a a href="./?action=numeros&opt=add&id= <?php echo $cliente->id_cliente;?>"  class="btn btn-warning"> Agregar numero </a> -->
 
                         <h5> Direccion </h5>
+
                         <div class="mb-3 form-floating">
 							<input type="hidden" class="form-control" name="id_direccion" value="<?php  echo $direccion->id_direccion; ?>">
 						</div>
+
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3 form-floating">
-                                    <input type="text" class="form-control" name="calle"  value="<?php  echo$direccion->calle; ?>">
+                                    <input type="text" class="form-control" name="calle"  value="<?php  echo$direccion->calle; ?>" required>
                                     <label for="floatingInput1">Calle</label>
+                                    <div class="invalid-feedback">Por favor, complete este campo.</div>
                                 </div>
                             </div>
 
                            <div class="col-md-6">
                                 <div class="mb-3 form-floating">
-                                    <input type="text" class="form-control" name="numero" value="<?php  echo$direccion->numero; ?>">
+                                    <input type="text" class="form-control" name="numero" value="<?php  echo$direccion->numero; ?>" required>
                                     <label for="floatingInput1">Numero</label>
+                                    <div class="invalid-feedback">Por favor, complete este campo.</div>
                                 </div>
                             </div>
                          </div>
 
 						<div class="mb-3 form-floating">
-							<input type="tetx" class="form-control" name="colonia" value="<?php  echo$direccion->colonia; ?>">
+							<input type="tetx" class="form-control" name="colonia" value="<?php  echo$direccion->colonia; ?>" required>
 							<label for="floatingInput1">Colonia</label>
+                            <div class="invalid-feedback">Por favor, complete este campo.</div>
 						</div>
 
 
 						<div class="mb-3 form-floating">
-							<input type="tetx" class="form-control" name="ciudad" value="<?php  echo$direccion->ciudad; ?>">
+							<input type="tetx" class="form-control" name="ciudad" value="<?php  echo$direccion->ciudad; ?>" required>
 							<label for="floatingInput1">Ciudad</label>
+                            <div class="invalid-feedback">Por favor, complete este campo.</div>
 						</div>
+
 						<div class="mb-3 form-floating text-end">
 		    				<button type="submit" class="btn btn-primary">Actualizar datos</button>
 						</div>	
@@ -256,7 +274,7 @@
                 <div class="card">
                 <div class="card-body">
 
-                    <form method="post" action="./?action=numeros&opt=add&id= <?php echo $cliente->id_cliente;?>">
+                    <form method="post" action="./?action=numeros&opt=add&id= <?php echo $cliente->id_cliente;?>"  class="needs-validation" novalidate>
                         <h5> Numeros telefonicos </h5>
                         <div class="mb-3 form-floating">
 							<input type="hidden" class="form-control" name="id_cliente" value="<?php  echo$cliente->id_cliente; ?>">
@@ -277,8 +295,9 @@
                         </div>
 
                         <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Nuevo número" name="nuevo_numero">
+                            <input type="number" class="form-control" placeholder="Nuevo número" name="nuevo_numero" required>
                             <button class="btn btn-primary" type="submit">Agregar número</button>
+                            <div class="invalid-feedback">Por favor, complete este campo.</div>
                         </div>
                     </form>
                 
