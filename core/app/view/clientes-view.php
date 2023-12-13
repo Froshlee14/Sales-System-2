@@ -217,8 +217,8 @@
                         <div class="mb-3">
                                 <label for="Select" class="form-label mx-1">Estado</label>
                                 <select id="Select" class="form-select" name = "estado" required>
-                                    <option value = "1" selected> Activo </option>
-                                    <option value = "0"> Inactivo </option>
+                                    <option value = "1"  <?php if ($cliente->status ==1) echo "selected" ?>> Activo </option>
+                                    <option value = "0" <?php if ($cliente->status ==0) echo "selected" ?>> Inactivo </option>
                                 </select>
                                 <div class="invalid-feedback">Por favor, selecciona un campo.</div>
                         </div>
