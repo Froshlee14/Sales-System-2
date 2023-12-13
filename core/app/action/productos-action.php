@@ -18,7 +18,7 @@
 			
 			$p-> addProd();
 			echo "agregado";
-			//Core::addToastr('success','Usuario agregado on exito');
+			Core::addToastr('success','Producto agregado con exito');
 			Core::redir("./?view=productos&opt=all");
 			
 		}

@@ -27,7 +27,7 @@
 			$pro->add();
 
 			echo "agregado";
-			//Core::addToastr('success','Usuario agregado on exito');
+			Core::addToastr('success','Proveedor agregado con exito');
 			Core::redir("./?view=proveedores&opt=all");
 			
 		}

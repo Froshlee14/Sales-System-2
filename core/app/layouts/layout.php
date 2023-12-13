@@ -392,6 +392,15 @@
           </section>
       </div>
     <?php endif; ?>
+
+    <script>
+        $(document).ready(function () {
+            <?php
+                Core::getToastr();
+            ?>      
+
+        });
+    </script>
     
 
     <!-- sweetalert2 -->

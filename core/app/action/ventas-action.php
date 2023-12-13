@@ -32,7 +32,7 @@
 			$dv->add();
 
 			echo "agregado";
-			Core::addToastr('success','Usuario agregado on exito');
+			Core::addToastr('success','Venta agregada con exito');
 			Core::redir("./?view=ventas&opt=all");
 			
 		}
