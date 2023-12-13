@@ -115,7 +115,7 @@
                                 <span class="item-name">Dashboard</span>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="collapse" href="#personal-menu" role="button" aria-expanded="false" aria-controls="personal-menu">
                                 <i class="bi bi-list">
 
@@ -137,7 +137,19 @@
                                       <span class="item-name"> Clientes </span>
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                
+                            </ul>
+                        </li> -->
+                        <li class="nav-item">
+                                    <a class="nav-link " href="./?view=clientes&opt=all">
+                                      <i class="icon">
+                                           <i class="bi bi-circle"></i>
+                                        </i>
+                                      <i class="sidenav-mini-icon"> C </i>
+                                      <span class="item-name"> Clientes </span>
+                                    </a>
+                        </li>
+                        <li class="nav-item">
                                     <a class="nav-link " href="./?view=proveedores&opt=all">
                                       <i class="icon">
                                            <i class="bi bi-circle"></i>
@@ -145,8 +157,6 @@
                                       <i class="sidenav-mini-icon"> P </i>
                                       <span class="item-name"> Proveedores </span>
                                     </a>
-                                </li>
-                            </ul>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="collapse" href="#gestion-menu" role="button" aria-expanded="false" aria-controls="gestion-menu">
