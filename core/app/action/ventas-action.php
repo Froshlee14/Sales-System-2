@@ -4,7 +4,7 @@
 		Core::redir("./");
 	}
 	
-	if(isset($_GET["opt"]) && $_GET["opt"] == "add"){
+	if(isset($_POST["opt"]) && $_POST["opt"] == "add"){
 		//deben coincidir con los atribitos name de la etiqueta del formulario
 		var_dump($_POST);
 		if(isset($_POST["descuento"])){

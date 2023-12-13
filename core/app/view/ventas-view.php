@@ -1,3 +1,20 @@
+<script>
+function validarFormulario() {
+    var clientInput = document.getElementById('cliente').value;
+    var fechaInput = document.getElementById('fecha').value;
+    var productInput = document.getElementById ('producto_select').value;
+    var cantidadInput = document.getElementById ('cantidad').value;
+    var descInput = document.getElementById ('descuento').value;
+
+    if (clientInput == '0' || fechaInput == '' || productInput == '' || cantidadInput == '' || descInput == '') {
+        alert("Existen campos vacios");
+        return false;
+    }
+
+    return true;
+}
+</script>
+
 <?php
 
 	if(!isset($_SESSION["user_id"])){
@@ -108,17 +125,23 @@
                 <br>
                 <div class="card">
                     <div class="card-body">			
-                        <form method="post" action="./?action=ventas&opt=add">
+                        <form action="/Sales-System-2/ventas-action" method="post" onsubmit="return validarFormulario()">
 
                             <div class="mb-3">
                                     <label for="Select" class="form-label">Cliente</label>
-                                    <select id="Select" class="form-select" name = "id_cliente">
-
+                                    <select  class="form-select" name = "id_cliente" id="cliente">
 
                                     <?php
+                                    if(count($listaClientes) > 0 ){
                                         foreach($listaClientes as $key => $cl){
                                     ?>
                                         <option value = "<?php echo $cl->id_cliente ?>"> <?php echo $cl->nombre ?> </option>
+                                    <?php
+                                        }
+                                    }
+                                    else {
+                                    ?>
+                                    <option value="0">No hay clientes</option>
                                     <?php
                                         }
                                     ?>
@@ -126,7 +149,7 @@
                             </div>
 
                             <div class="mb-3 form-floating">
-                                <input type="date" class="form-control" name="fecha">
+                                <input type="date" class="form-control" name="fecha" id="fecha">
                                 <label for="floatingInput1">Fecha</label>
                             </div>
 
@@ -158,7 +181,7 @@
                             </div> 
 
                             <div class="mb-3 form-floating">
-                                <input type="number" class="form-control" name="descuento">
+                                <input id="descuento" type="number" class="form-control" name="descuento">
                                 <label for="floatingInput1">Descuento</label>
                             </div>
 
@@ -169,7 +192,7 @@
 
 
                             <div class="mb-3 form-floating text-end">
-                                <button type="submit" class="btn btn-primary">Agregar</button>
+                                <input type="submit" value = "add" name = "opt" class="btn btn-primary"></button>
                             </div>	
 
                         </form>
@@ -255,7 +278,7 @@
 
 
 						<div class="mb-3 form-floating">
-							<input type="number" disabled class="form-control" name="cantidad" value= "<?php echo $detvent->cantidad?>">
+							<input id="cantidad" disabled class="form-control" name="cantidad" value= "<?php echo $detvent->cantidad?>">
 							<label for="floatingInput1">Cantidad</label>
 						</div> 
 
