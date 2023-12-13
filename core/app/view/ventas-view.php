@@ -122,7 +122,7 @@ if(isset($_GET["opt"]) && $_GET["opt"] == "add"){
 
                 <div class="mb-3 form-floating">
                     <input type="number" readonly class="form-control" name="monto" id="monto" required>
-                    <label for="monto">Monto</label>
+                    <label for="monto">Precio</label>
                     <div class="invalid-feedback">Por favor, complete este campo.</div>
                 </div>
 
@@ -214,13 +214,13 @@ if(isset($_GET["opt"]) && $_GET["opt"] == "Visualizar"){
                 </div>
 
                 <div class="mb-3 form-floating">
-                    <input id="cantidad" disabled class="form-control" name="cantidad" value="<?php echo $detvent->cantidad ?>">
-                    <label for="floatingInput1">Cantidad</label>
+                    <input type="number" disabled class="form-control" name="monto" value="<?php echo $vent->monto ?>">
+                    <label for="floatingInput1">Precio</label>
                 </div>
 
                 <div class="mb-3 form-floating">
-                    <input type="number" disabled class="form-control" name="monto" value="<?php echo $vent->monto ?>">
-                    <label for="floatingInput1">Monto</label>
+                    <input id="cantidad" disabled class="form-control" name="cantidad" value="<?php echo $detvent->cantidad ?>">
+                    <label for="floatingInput1">Cantidad</label>
                 </div>
 
                 <div class="mb-3 form-floating">
