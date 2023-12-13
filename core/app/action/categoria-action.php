@@ -7,7 +7,6 @@
 	if(isset($_GET["opt"]) && $_GET["opt"] == "add"){
 		//deben coincidir con los atribitos name de la etiqueta del formulario
 		var_dump($_POST);
-		if(isset($_POST["nombre"])){
 			//var_dump($_POST)
 			$ca = new CategoriaData();
 			$ca->nombre = $_POST["nombre"];
@@ -17,11 +16,6 @@
 			echo "agregado";
 			Core::addToastr('success','Categoria agregado con exito');
 			Core::redir("./?view=categoria&opt=all");
-			
-		}
-		else{
-			echo "No";
-		}
 	}
 	
 	if(isset($_GET["opt"]) && $_GET["opt"] == "update"){
@@ -34,8 +28,7 @@
 			
 			$ca-> update();
 			
-			echo "actualizado";
-			//Core::addToastr('success','Usuario agregado on exito');
+			Core::addToastr('success','Usuario agregado on exito');
 			Core::redir("./?view=categoria&opt=all");
 
 	}
@@ -46,9 +39,7 @@
 			$ca->delete();
 			//$c->darBaja();
 		
-			
-			echo "registro eliminado";
-			//Core::addToastr('success','Usuario eliminado con exito');
+			Core::addToastr('success','Usuario eliminado con exito');
 			Core::redir("./?view=categoria&opt=all");
 
 	}

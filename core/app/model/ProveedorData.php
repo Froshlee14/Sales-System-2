@@ -29,7 +29,16 @@ class ProveedorData extends Extra{
 	
     public static function getproveedores(){
 
-        $sql = "select * from proveedor";
+        $sql = "select * from proveedor where status = 1";
+        $query = Executor::doit($sql);
+
+        return Model::many($query[0],new ProveedorData);
+
+    }
+
+    public static function getproveedoresInactivos(){
+
+        $sql = "select * from proveedor where status = 0";
         $query = Executor::doit($sql);
 
         return Model::many($query[0],new ProveedorData);

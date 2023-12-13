@@ -7,7 +7,6 @@
 	if(isset($_GET["opt"]) && $_GET["opt"] == "add"){
 		//deben coincidir con los atribitos name de la etiqueta del formulario
 		var_dump($_POST);
-		if(isset($_POST["nombre"])){
 			//var_dump($_POST)
 
             $dir = new DireccionData();
@@ -29,14 +28,9 @@
             $tel->id_cliente = $cliente[1];
             $tel->add();
 
-			echo "agregado";
-			Core::addToastr('success','Usuario agregado on exito');
+			Core::addToastr('success','Cliente agregado con exito');
 			Core::redir("./?view=clientes&opt=all");
 			
-		}
-		else{
-			echo "No";
-		}
 	}
 	
 	if(isset($_GET["opt"]) && $_GET["opt"] == "update"){
@@ -59,8 +53,7 @@
 			
 			$c-> update();
 			
-			echo "actualizado";
-			//Core::addToastr('success','Usuario agregado on exito');
+			Core::addToastr('success','Cliente agregado con exito');
 			Core::redir("./?view=clientes&opt=all");
 
 	}
@@ -71,9 +64,7 @@
 			//$u->delete();
 			$c->darBaja();
 		
-			
-			echo "registro eliminado";
-			//Core::addToastr('success','Usuario eliminado con exito');
+			Core::addToastr('success','Cliente eliminado con exito');
 			Core::redir("./?view=clientes&opt=all");
 
 	}

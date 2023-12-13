@@ -57,9 +57,4 @@ if(isset($_GET["opt"]) && $_GET["opt"] == "login"){
 
 	Core::redir("./");
 }
-
-	
-
-
-
 ?>

@@ -1,5 +1,5 @@
 <?php
-
+/*
 	if(!isset($_SESSION["user_id"])){
 		Core::redir("./");
 	}
@@ -7,7 +7,6 @@
 	if(isset($_GET["opt"]) && $_GET["opt"] == "add"){
 		//deben coincidir con los atribitos name de la etiqueta del formulario
 		var_dump($_POST);
-		if(isset($_POST["id_venta"])){
 			//var_dump($_POST)
 			$dv = new Detalles_VentaData();
 			$dv->id_venta = $_POST["id_venta"];
@@ -16,33 +15,11 @@
             $dv->monto = $_POST["monto"];
 			
 			$dv-> add();
-			echo "agregado";
-			//Core::addToastr('success','Usuario agregado on exito');
+			Core::addToastr('success','Usuario agregado on exito');
 			Core::redir("./?view=detallesventa&opt=all");
 			
-		}
-		else{
-			echo "No";
-		}
 	}
 	
-	if(isset($_GET["opt"]) && $_GET["opt"] == "update"){
-		//deben coincidir con los atribitos name de la etiqueta del formulario
-			//var_dump($_POST)
-			$dv = Detalles_VentaData::getbyID($_POST["id_venta"]);
-			
-			$dv->id_venta= $_POST["id_venta"];
-			$dv->id_producto = $_POST["id_producto"];
-            $dv->cantidad = $_POST["cantidad"];
-            $dv->monto = $_POST["monto"];
-			
-			$dv-> update();
-			
-			echo "actualizado";
-			//Core::addToastr('success','Usuario agregado on exito');
-			Core::redir("./?view=detallesventa&opt=all");
-
-	}
 
 	if(isset($_GET["opt"]) && $_GET["opt"] == "delete"){
 
@@ -56,5 +33,5 @@
 			Core::redir("./?view=detallesventa&opt=all");
 
 	}
-
+*/
 ?>

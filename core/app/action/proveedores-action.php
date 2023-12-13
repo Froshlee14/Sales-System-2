@@ -6,8 +6,7 @@
 	
 	if(isset($_GET["opt"]) && $_GET["opt"] == "add"){
 		//deben coincidir con los atribitos name de la etiqueta del formulario
-		var_dump($_POST);
-		if(isset($_POST["nombre"])){
+		//var_dump($_POST);
 			//var_dump($_POST)
 
             $dir = new DireccionData();
@@ -26,14 +25,9 @@
 			
 			$pro->add();
 
-			echo "agregado";
 			Core::addToastr('success','Proveedor agregado con exito');
 			Core::redir("./?view=proveedores&opt=all");
 			
-		}
-		else{
-			echo "No";
-		}
 	}
 	
 	if(isset($_GET["opt"]) && $_GET["opt"] == "update"){
@@ -53,11 +47,11 @@
 			$pro->nombre = $_POST["nombre"];
             $pro->telefono = intval($_POST["telefono"]);
             $pro->sitio_web = $_POST["sitio_web"];
+			$pro->status = $_POST["estado"];
 			
 			$pro-> update();
 			
-			echo "actualizado";
-			//Core::addToastr('success','Usuario agregado on exito');
+			Core::addToastr('success','Proveedor actualizado con exito');
 			Core::redir("./?view=proveedores&opt=all");
 
 	}
@@ -68,9 +62,7 @@
 			//$u->delete();
 			$c->darBaja();
 		
-			
-			echo "registro eliminado";
-			//Core::addToastr('success','Usuario eliminado con exito');
+			Core::addToastr('success','Proveedor eliminado con exito');
 			Core::redir("./?view=clientes&opt=all");
 
 	}

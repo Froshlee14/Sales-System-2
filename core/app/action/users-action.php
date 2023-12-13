@@ -7,7 +7,6 @@
 	if(isset($_GET["opt"]) && $_GET["opt"] == "add"){
 		//deben coincidir con los atribitos name de la etiqueta del formulario
 		var_dump($_POST);
-		if(isset($_POST["nombre"]) and isset($_POST["username"]) and isset($_POST["password"])){
 			//var_dump($_POST)
 			$u = new UserData();
 			$u->nombre = $_POST["nombre"];
@@ -20,13 +19,9 @@
             foreach ($arr as $key => $item){ 
                 echo $item,",";
             }
-			//Core::addToastr('success','Usuario agregado on exito');
-			//Core::redir("./?view=users&opt=all");
-			
-		}
-		else{
-			echo "No";
-		}
+			Core::addToastr('success','Usuario agregado con exito');
+			Core::redir("./?view=users&opt=all");
+		
 	}
 	
 	if(isset($_GET["opt"]) && $_GET["opt"] == "update"){
@@ -49,9 +44,8 @@
 				
 			} 
 			*/
-			
-			echo "actualizado";
-			//Core::addToastr('success','Usuario agregado on exito');
+
+			Core::addToastr('success','Usuario actualizado con exito');
 			Core::redir("./?view=users&opt=all");
 
 	}
@@ -62,9 +56,7 @@
 			$u->delete();
 			//$u->darBaja();
 		
-			
-			echo "registro eliminado";
-			//Core::addToastr('success','Usuario eliminado con exito');
+			Core::addToastr('success','Usuario eliminado con exito');
 			Core::redir("./?view=users&opt=all");
 
 	}

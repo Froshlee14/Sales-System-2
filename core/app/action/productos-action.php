@@ -7,7 +7,6 @@
 	if(isset($_GET["opt"]) && $_GET["opt"] == "add"){
 		//deben coincidir con los atribitos name de la etiqueta del formulario
 		var_dump($_POST);
-		if(isset($_POST["nombre"])){
 			//var_dump($_POST)
 			$p = new ProductoData();
 			$p->nombre = $_POST["nombre"];
@@ -17,14 +16,9 @@
             $p->id_categoria = $_POST["id_categoria"];
 			
 			$p-> addProd();
-			echo "agregado";
 			Core::addToastr('success','Producto agregado con exito');
 			Core::redir("./?view=productos&opt=all");
 			
-		}
-		else{
-			echo "No";
-		}
 	}
 	
 	if(isset($_GET["opt"]) && $_GET["opt"] == "update"){
@@ -40,8 +34,7 @@
 
 			$p-> update();
 			
-			echo "actualizado";
-			//Core::addToastr('success','Usuario agregado on exito');
+			Core::addToastr('success','Producto modificado con exito');
 			Core::redir("./?view=productos&opt=all");
 
 	}
@@ -52,9 +45,7 @@
 			$p->delete();
 			//$c->darBaja();
 		
-			
-			echo "registro eliminado";
-			//Core::addToastr('success','Usuario eliminado con exito');
+			Core::addToastr('success','Producto modificado con exito');
 			Core::redir("./?view=productos&opt=all");
 
 	}

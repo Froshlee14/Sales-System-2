@@ -7,7 +7,6 @@
 	if(isset($_GET["opt"]) && $_GET["opt"] == "add"){
 		//deben coincidir con los atribitos name de la etiqueta del formulario
 		var_dump($_POST);
-		if(isset($_POST["descuento"])){
 			//var_dump($_POST)
 			$ve = new VentaData();
 			
@@ -31,17 +30,12 @@
 
 			$dv->add();
 
-			echo "agregado";
-			Core::addToastr('success','Venta agregada con exito');
+			Core::addToastr('success','Venta realizada con exito');
 			Core::redir("./?view=ventas&opt=all");
 			
-		}
-		else{
-			echo "No";
-		}
 	}
 	
-	if(isset($_GET["opt"]) && $_GET["opt"] == "update"){
+	/*if(isset($_GET["opt"]) && $_GET["opt"] == "update"){
 		//deben coincidir con los atribitos name de la etiqueta del formulario
 			//var_dump($_POST)
 			$ve = VentaData::getbyID($_POST["id_venta"]);
@@ -65,11 +59,10 @@
 
 			$dv->update();
 
-			echo "actualizado";
-			//Core::addToastr('success','Usuario agregado on exito');
+			Core::addToastr('success','Venta modificada con exito');
 			Core::redir("./?view=ventas&opt=all");
 
-	}
+	}*/
 
 	if(isset($_GET["opt"]) && $_GET["opt"] == "delete"){
 
@@ -79,9 +72,8 @@
 			
 			$dv->delete();
 			$ve->delete();
-			
-			echo "registro eliminado";
-			//Core::addToastr('success','Usuario eliminado con exito');
+		
+			Core::addToastr('success','Venta eliminada con exito');
 			Core::redir("./?view=ventas&opt=all");
 
 	}
