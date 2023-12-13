@@ -157,7 +157,6 @@
                                 <label for="floatingInput1">Cantidad</label>
                             </div> 
 
-
                             <div class="mb-3 form-floating">
                                 <input type="number" class="form-control" name="descuento">
                                 <label for="floatingInput1">Descuento</label>

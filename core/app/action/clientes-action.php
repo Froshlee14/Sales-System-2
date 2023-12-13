@@ -54,6 +54,7 @@
 			$c = ClienteData::getbyID($_POST["id_cliente"]);
 			
 			$c->nombre = $_POST["nombre"];
+			$c->status = intval($_POST["estado"]);
 			//$c->id_direccion = $_POST["id_direccion"];
 			
 			$c-> update();

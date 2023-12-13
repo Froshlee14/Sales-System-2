@@ -7,6 +7,7 @@
 	if(isset($_GET["opt"]) && $_GET["opt"] == "all"){
 		
 		$listaClientes = ClienteData::getclientes();
+        $listaClientesInactivos = ClienteData::getclientesInactivos();
 		//var_dump($listaClientes);
 
 ?>
@@ -49,14 +50,52 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </div>
-
-
 		
 	<?php
 		}
-		else{
+        if(count($listaClientesInactivos)>0){
+            ?>
+
+            <div class= "card iq-document-card">
+                <div class="iq-side-content sticky-xl-top d-flex justify-content-between align-items-center m-4">
+                    <h2>Clientes inactivos</h2>
+                </div>
+                <table  class="table table-bordered"> 
+                    <thead>
+                        <tr class="table-primary">
+                            <th scope="col"> ID </th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    
+
+                        <?php
+                            foreach($listaClientesInactivos as $key => $row){
+                        ?>
+                            <tr>
+                                <th scope="row"> <?php echo $row->id_cliente;?> </th>
+                                <td> <?php echo $row->nombre;?> </td>
+                                <td> <a href="./?view=clientes&opt=edit&id= <?php echo $row->id_cliente;?> "> Ver/Editar </a></td>
+                            </tr>
+                        
+                        <?php
+                            }
+                        ?>
+                    
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    
+<?php
+    }
+		if(count($listaClientes) == 0 && count($listaClientesInactivos) == 0){
 	?>
         <div class="alert alert-bottom alert-danger alert-dismissible fade show " role="alert">
             <span> No hay registros</span>
@@ -167,7 +206,7 @@
 
                         <div class="mb-3">
                                 <label for="Select" class="form-label mx-1">Estado</label>
-                                <select id="Select" class="form-select" name = "id_categoria">
+                                <select id="Select" class="form-select" name = "estado">
                                     <option value = "1" selected> Activo </option>
                                     <option value = "0"> Inactivo </option>
                                 </select>

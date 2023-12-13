@@ -27,7 +27,16 @@ class ClienteData extends Extra{
 	
     public static function getclientes(){
 
-        $sql = "select * from cliente";
+        $sql = "select * from cliente where status = 1";
+        $query = Executor::doit($sql);
+
+        return Model::many($query[0],new ClienteData);
+
+    }
+
+    public static function getclientesInactivos(){
+
+        $sql = "select * from cliente where status = 0";
         $query = Executor::doit($sql);
 
         return Model::many($query[0],new ClienteData);
