@@ -85,6 +85,7 @@ USE proyecto_ventas;
 		nombre VARCHAR(50),
 		precio INT,
 		stock INT,
+		status int default 1
 		id_proveedor INT,
 		id_categoria INT,
 		
@@ -114,4 +115,3 @@ USE proyecto_ventas;
 		FOREIGN KEY (id_producto) REFERENCES producto(id_producto)
 	);
 
-information_schemauser
