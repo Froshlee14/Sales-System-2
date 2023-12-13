@@ -12,15 +12,17 @@
 ?>
 
         <div class=" table-responsive m-4">
-        <a class="btn btn-primary" href="./?view=productos&opt=add"> Nuevo </a>
-            <?php
-                if(count($listaProductos)>0){
-            ?>
 
             <div class= "card iq-document-card">
                 <div class="iq-side-content sticky-xl-top d-flex justify-content-between align-items-center m-4">
                     <h2><?php echo "Productos"; ?></h2>
+                    <a class="btn btn-primary" href="./?view=productos&opt=add"> Nuevo </a>
                 </div>
+
+                <?php
+                if(count($listaProductos)>0){
+                ?>
+
                 <table  class="table table-striped">
                     <thead>
                     <tr class="table-primary">
@@ -91,26 +93,30 @@
             <br>
             <div class="card">
                 <div class="card-body">			
-                    <form method="post" action="./?action=productos&opt=add">
+                    <form method="post" action="./?action=productos&opt=add" class="needs-validation" novalidate>
                         <div class="mb-3 form-floating">
-                            <input type="text" class="form-control" id="nombre" placeholder="Nombre" name="nombre">
+                            <input type="text" class="form-control" id="nombre" placeholder="Nombre" name="nombre" required>
                             <label for="floatingInput1">Nombre</label>
+                            <div class="invalid-feedback">Por favor, complete este campo.</div>
                         </div>
 
                         <div class="mb-3 form-floating">
-                            <input type="number" class="form-control" name="precio">
+                            <input type="number" class="form-control" name="precio" required>
                             <label for="floatingInput1">Precio</label>
+                            <div class="invalid-feedback">Por favor, complete este campo.</div>
                         </div>
 
                         <div class="mb-3 form-floating">
-                            <input type="number" class="form-control" name="stock">
+                            <input type="number" class="form-control" name="stock" required>
                             <label for="floatingInput1">Stock</label>
+                            <div class="invalid-feedback">Por favor, complete este campo.</div>
                         </div>
 
 
                         <div class="mb-3">
+                            <div class="invalid-feedback">Por favor, selecciona un campo.</div>
                             <label for="Select" class="form-label">Proveedor</label>
-                            <select id="Select" class="form-select" name = "id_proveedor">
+                            <select id="Select" class="form-select" name = "id_proveedor" required>
 
                             <?php
                                 foreach($listaproveedores as $key => $p){
@@ -124,8 +130,9 @@
 
 
                         <div class="mb-3">
+                        <div class="invalid-feedback">Por favor, selecciona un campo.</div>
                             <label for="Select" class="form-label">Categoria</label>
-                            <select id="Select" class="form-select" name = "id_categoria">
+                            <select id="Select" class="form-select" name = "id_categoria" required>
 
                             <?php
                                 foreach($listacategorias as $key => $c){
@@ -169,15 +176,16 @@
 
             <div class=" table-responsive m-4">
                 <div class="iq-side-content sticky-xl-top d-flex justify-content-between align-items-center">
-                    <h2> Nuevo Producto</h2>
+                    <h2> Editar Producto > <?php echo $prod->nombre ?></h2>
                 </div>
                 <br>
                 <div class="card">
                     <div class="card-body">			
-                        <form method="post" action="./?action=productos&opt=update">
+                        <form method="post" action="./?action=productos&opt=update" class="needs-validation" novalidate>
                             <div class="mb-3 form-floating">
-                                <input type="text" class="form-control" value = "<?php echo $prod->nombre ?>" name="nombre">
+                                <input type="text" class="form-control" value = "<?php echo $prod->nombre ?>" name="nombre" required>
                                 <label for="floatingInput1">Nombre</label>
+                                <div class="invalid-feedback">Por favor, complete este campo.</div>
                             </div>
 
                             
@@ -188,19 +196,22 @@
 
 
                             <div class="mb-3 form-floating">
-                                <input type="number" class="form-control" value = "<?php echo $prod->precio ?>" name="precio">
+                                <input type="number" class="form-control" value = "<?php echo $prod->precio ?>" name="precio" required>
                                 <label for="floatingInput1">Precio</label>
+                                <div class="invalid-feedback">Por favor, complete este campo.</div>
                             </div>
 
                             <div class="mb-3 form-floating">
-                                <input type="number" class="form-control" value = "<?php echo $prod->stock ?>" name="stock">
+                                <input type="number" class="form-control" value = "<?php echo $prod->stock ?>" name="stock" required>
                                 <label for="floatingInput1">Stock</label>
+                                <div class="invalid-feedback">Por favor, complete este campo.</div>
                             </div>
 
 
                             <div class="mb-3">
+                                <div class="invalid-feedback">Por favor, selecciona un campo.</div>
                                 <label for="Select" class="form-label">Proveedor</label>
-                                <select id="Select" class="form-select" name = "id_proveedor">
+                                <select id="Select" class="form-select" name = "id_proveedor" required>
 
                                 <?php
                                     foreach($listaproveedores as $key => $p){
@@ -214,8 +225,9 @@
 
 
                             <div class="mb-3">
+                                <div class="invalid-feedback">Por favor, complete este campo.</div>
                                 <label for="Select" class="form-label">Categoria</label>
-                                <select id="Select" class="form-select" name = "id_categoria">
+                                <select id="Select" class="form-select" name = "id_categoria" required>
 
 
                                 <?php
