@@ -12,16 +12,15 @@
 ?>
 
         <div class=" table-responsive m-4">
-        <a class="btn btn-primary" href="./?view=ventas&opt=add"> Nuevo </a>
-            <?php
-                if(count($listaVentas)>0){
-            ?>
 
             <div class= "card iq-document-card">
                 <div class="iq-side-content sticky-xl-top d-flex justify-content-between align-items-center m-4">
                     <h2><?php echo "Ventas"; ?></h2>
                     <a class="btn btn-primary" href="./?view=ventas&opt=add"> Nuevo </a>
                 </div>
+                <?php
+                if(count($listaVentas)>0){
+            ?>
                 <table  class="table table-striped">
                     <thead>
                     <tr  class="table-primary">
@@ -134,7 +133,7 @@
 
                             <div class="mb-3">
                                 <label for="Select" class="form-label">Producto</label>
-                                <select id="producto_select" class="form-select" name = "id_producto" onchange="tuFuncion()">
+                                <select id="producto_select" class="form-select" name = "id_producto" onclick="tuFuncion()">
                                 <?php
                                     foreach($listaProductos as $key => $prod){
                                 ?>
