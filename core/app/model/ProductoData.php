@@ -29,7 +29,16 @@ class ProductoData extends Extra{
 	
     public static function getproducts(){
 
-        $sql = "select * from producto";
+        $sql = "select * from producto where status = 1";
+        $query = Executor::doit($sql);
+
+        return Model::many($query[0],new ProductoData);
+
+    }
+
+    public static function getproductsInactivos(){
+
+        $sql = "select * from producto where status = 0";
         $query = Executor::doit($sql);
 
         return Model::many($query[0],new ProductoData);
@@ -58,7 +67,7 @@ class ProductoData extends Extra{
 	
     public function delete(){
 
-        $sql = "delete from producto where id_producto =" .$this->id_producto;
+        $sql = "update producto set status = 0 where id_producto =" .$this->id_producto;
     
 		return Executor::doit($sql);
     }

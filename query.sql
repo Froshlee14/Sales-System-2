@@ -1,6 +1,6 @@
 CREATE DATABASE proyecto_ventas;
-USE proyecto_ventas;
-	
+
+USE proyecto_ventas;	
 	
 	CREATE TABLE user(
 			id INT NOT null AUTO_INCREMENT PRIMARY KEY,

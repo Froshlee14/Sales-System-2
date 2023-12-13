@@ -43,9 +43,8 @@
 
 			$p = ProductoData::getByID($_GET["id"]);
 			$p->delete();
-			//$c->darBaja();
 		
-			Core::addToastr('success','Producto modificado con exito');
+			Core::addToastr('success','Producto dado de baja con exito');
 			Core::redir("./?view=productos&opt=all");
 
 	}
