@@ -62,22 +62,20 @@
                     
                     <!--Logo start-->
                     <div class="logo-main">
-                        <div class="logo-normal">
-                            <svg class=" icon-30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect x="-0.757324" y="19.2427" width="28" height="4" rx="2" transform="rotate(-45 -0.757324 19.2427)" fill="currentColor"/>
-                                <rect x="7.72803" y="27.728" width="28" height="4" rx="2" transform="rotate(-45 7.72803 27.728)" fill="currentColor"/>
-                                <rect x="10.5366" y="16.3945" width="16" height="4" rx="2" transform="rotate(45 10.5366 16.3945)" fill="currentColor"/>
-                                <rect x="10.5562" y="-0.556152" width="28" height="4" rx="2" transform="rotate(45 10.5562 -0.556152)" fill="currentColor"/>
-                            </svg>
-                        </div>
-                        <div class="logo-mini">
-                            <svg class=" icon-30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect x="-0.757324" y="19.2427" width="28" height="4" rx="2" transform="rotate(-45 -0.757324 19.2427)" fill="currentColor"/>
-                                <rect x="7.72803" y="27.728" width="28" height="4" rx="2" transform="rotate(-45 7.72803 27.728)" fill="currentColor"/>
-                                <rect x="10.5366" y="16.3945" width="16" height="4" rx="2" transform="rotate(45 10.5366 16.3945)" fill="currentColor"/>
-                                <rect x="10.5562" y="-0.556152" width="28" height="4" rx="2" transform="rotate(45 10.5562 -0.556152)" fill="currentColor"/>
-                            </svg>
-                        </div>
+                    <div class="logo-normal">
+                        <svg class="text-primary icon-30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="2" y="2" width="26" height="26" rx="4" fill="currentColor" />
+                            <!-- Letra "S" en bold -->
+                            <text x="50%" y="50%" font-size="12" text-anchor="middle" alignment-baseline="middle" fill="#fff" font-weight="bold">S</text>
+                        </svg>
+                    </div>
+                    <div class="logo-mini">
+                        <svg class="text-primary icon-30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="5" y="5" width="20" height="20" rx="3" fill="currentColor" />
+                            <!-- Letra "S" en bold -->
+                            <text x="50%" y="50%" font-size="8" text-anchor="middle" alignment-baseline="middle" fill="#fff" font-weight="bold">S</text>
+                        </svg>
+                    </div>
                     </div>
                     <!--logo End-->
                     
@@ -336,20 +334,18 @@
                                   <!--Logo start-->
                                   <div class="logo-main">
                                       <div class="logo-normal">
-                                          <svg class="text-primary icon-30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                              <rect x="-0.757324" y="19.2427" width="28" height="4" rx="2" transform="rotate(-45 -0.757324 19.2427)" fill="currentColor"/>
-                                              <rect x="7.72803" y="27.728" width="28" height="4" rx="2" transform="rotate(-45 7.72803 27.728)" fill="currentColor"/>
-                                              <rect x="10.5366" y="16.3945" width="16" height="4" rx="2" transform="rotate(45 10.5366 16.3945)" fill="currentColor"/>
-                                              <rect x="10.5562" y="-0.556152" width="28" height="4" rx="2" transform="rotate(45 10.5562 -0.556152)" fill="currentColor"/>
-                                          </svg>
+                                            <svg class="text-primary icon-30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <rect x="2" y="2" width="26" height="26" rx="4" fill="currentColor" />
+                                                <!-- Letra "S" en bold -->
+                                                <text x="50%" y="50%" font-size="12" text-anchor="middle" alignment-baseline="middle" fill="#fff" font-weight="bold">S</text>
+                                            </svg>
                                       </div>
                                       <div class="logo-mini">
-                                          <svg class="text-primary icon-30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                              <rect x="-0.757324" y="19.2427" width="28" height="4" rx="2" transform="rotate(-45 -0.757324 19.2427)" fill="currentColor"/>
-                                              <rect x="7.72803" y="27.728" width="28" height="4" rx="2" transform="rotate(-45 7.72803 27.728)" fill="currentColor"/>
-                                              <rect x="10.5366" y="16.3945" width="16" height="4" rx="2" transform="rotate(45 10.5366 16.3945)" fill="currentColor"/>
-                                              <rect x="10.5562" y="-0.556152" width="28" height="4" rx="2" transform="rotate(45 10.5562 -0.556152)" fill="currentColor"/>
-                                          </svg>
+                                            <svg class="text-primary icon-30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <rect x="5" y="5" width="20" height="20" rx="3" fill="currentColor" />
+                                                <!-- Letra "S" en bold -->
+                                                <text x="50%" y="50%" font-size="8" text-anchor="middle" alignment-baseline="middle" fill="#fff" font-weight="bold">S</text>
+                                            </svg>
                                       </div>
                                   </div>
                                   <!--logo End-->
