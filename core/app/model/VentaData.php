@@ -11,7 +11,6 @@ class VentaData extends Extra{
         $this->extra_fields_strings = array();
         $this->id_venta = "";
         $this->fecha = "";
-        $this->descuento = "";
         $this->id_cliente = "";
         $this->monto = "";
     }
@@ -37,8 +36,8 @@ class VentaData extends Extra{
 	
     public function addvent(){
 
-        $sql = "INSERT INTO venta (fecha, descuento, id_cliente,monto) 
-            VALUES (\"$this->fecha\", $this->descuento, $this->id_cliente, $this->monto)";
+        $sql = "INSERT INTO venta (fecha, id_cliente,monto) 
+            VALUES (\"$this->fecha\", $this->id_cliente, $this->monto)";
     
 		return Executor::doit($sql);
     }
@@ -46,7 +45,6 @@ class VentaData extends Extra{
     public function update(){
 
         $sql = "update venta set fecha=\"$this->fecha\", 
-                                    descuento=$this->descuento, 
                                     id_cliente=$this->id_cliente,
                                     monto= $this->monto
                                     where id_venta =" .$this->id_venta;

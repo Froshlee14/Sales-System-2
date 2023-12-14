@@ -11,10 +11,8 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "all") {
     <div class="table-responsive m-4">
         <div class="card iq-document-card">
             <div class="iq-side-content sticky-xl-top d-flex justify-content-between align-items-center m-4">
-                <h2>
-                    <?php echo "Ventas"; ?>
-                </h2>
-                <a class="btn btn-primary" href="./?view=ventas&opt=add"> Nuevo </a>
+                <h2> Ventas</h2>
+                <a class="btn btn-primary" href="./?view=ventas&opt=add&id_venta=0"> Nuevo </a>
             </div>
             <?php
             if (count($listaVentas) > 0) {
@@ -34,7 +32,7 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "all") {
                             foreach ($listaVentas as $key => $row) {
                                 $client = ClienteData::getbyID($row->id_cliente);
                                 $detvent = Detalles_VentaData::getbyID($row->id_venta);
-                                $prod = ProductoData::getByID($detvent->id_producto);
+                                //$prod = ProductoData::getByID($detvent->id_producto);
                                 ?>
                                 <tr>
                                     <th scope="row">
@@ -44,9 +42,9 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "all") {
                                         <?php echo $row->fecha; ?>
                                     </td>
                                     <td>
-                                        <?php echo $detvent->monto; ?>
+                                        <?php echo $row->monto; ?>
                                     </td>
-                                    <td> <a href="./?view=ventas&opt=Visualizar&id=<?php echo $row->id_venta; ?>"> Ver detalles </a>
+                                    <td> <a href="./?view=ventas&opt=view&id=<?php echo $row->id_venta; ?>"> Ver detalles </a>
                                     </td>
                                 </tr>
                                 <?php
@@ -75,20 +73,41 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "add") {
     ?>
 
     <div class="table-responsive mx-4">
-    <h5 class="card-title"> Datos de venta </h5>
-        <div class="card">
-            
-            <div class="card-body">
-                <form action="./?action=ventas&opt=add" method="post" id="ventasForm" class="needs-validation" novalidate>
+
+        <form action="./?action=ventas&opt=add" method="post" id="ventasForm" class="needs-validation" novalidate>
+            <div class="iq-side-content sticky-xl-top d-flex justify-content-between align-items-center m-4">
+                <h2> Nueva venta </h2>
+
+                <?php
+                if ($_GET["id_venta"] != 0) {
+                    $venta = VentaData::getbyID($_GET["id_venta"]);
+                    $listaDetallesVenta = Detalles_VentaData::getDetallesbyventa($_GET["id_venta"]);
+                    ?>
+
+                    <button type="submit" class="btn btn-primary">Guardar venta</button>
+
+                    <?php
+                }
+                ?>
+            </div>
+            <div class="card">
+                <div class="card-body">
+
+                        <input type="hidden" class="form-control" name="id_venta" id="id_venta" value="<?php echo $_GET["id_venta"] ?>">
+
                     <div class="mb-3">
                         <label for="cliente" class="form-label">Cliente</label>
                         <select class="form-select" name="id_cliente" id="cliente" required>
                             <?php
                             if (count($listaClientes) > 0) {
-                                foreach ($listaClientes as $key => $cl) {
+                                foreach ($listaClientes as $key => $cliente) {
                                     ?>
-                                    <option value="<?php echo $cl->id_cliente ?>">
-                                        <?php echo $cl->nombre ?>
+                                    <option value="<?php echo $cliente->id_cliente ?>" <?php if ($_GET["id_venta"] != 0) {
+                                           if ($venta->id_cliente == $cliente->id_cliente) {
+                                               echo "selected";
+                                           }
+                                       } ?>>
+                                        <?php echo $cliente->nombre ?>
                                     </option>
                                     <?php
                                 }
@@ -109,70 +128,83 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "add") {
                     ?>
 
                     <div class="mb-3 form-floating">
-                        <input type="date" class="form-control" name="fecha" id="fecha" required
-                            value="<?php echo $fechaActual; ?>" readonly>
+                        <input type="date" class="form-control" name="fecha" id="fecha" required value="<?php if ($_GET["id_venta"] != 0) {
+                            echo $venta->fecha;
+                        } else {
+                            echo $fechaActual;
+                        } ?>" readonly>
                         <label for="fecha">Fecha</label>
                         <div class="invalid-feedback">Por favor, seleccione una fecha.</div>
                     </div>
+                </div>
             </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <div class="mb-3">
-                    <label for="producto_select" class="form-label">Producto</label>
-                    <select id="producto_select" class="form-select" name="id_producto" onchange="tuFuncion()" required>
-                        <option value="0" data-precio=" " selected> Elige un producto </option>
-                        <?php
-                        foreach ($listaProductos as $key => $prod) {
-                            ?>
-                            <option value="<?php echo $prod->id_producto ?>" data-precio="<?php echo $prod->precio; ?>">
-                                <?php echo $prod->nombre ?>
-                            </option>
-                            <?php
-                        }
+
+            <div class="iq-side-content sticky-xl-top d-flex justify-content-between align-items-center m-4">
+                <h2> Productos </h2>
+                <button type="submit" class="btn btn-primary">Agregar Producto</button>
+            </div>
+
+
+            <?php
+            if ($_GET["id_venta"] != 0) {
+                if (count($listaDetallesVenta) > 0) {
+                    foreach ($listaDetallesVenta as $key => $detalleventa) {
                         ?>
-                    </select>
-                    <div class="invalid-feedback">Por favor, seleccione un producto.</div>
-                </div>
-
-                <div class="mb-3 form-floating">
-                    <input type="number" readonly class="form-control" name="monto" id="monto" required>
-                    <label for="monto">Precio</label>
-                    <div class="invalid-feedback">Por favor, complete este campo.</div>
-                </div>
-
-                <div class="mb-3 form-floating">
-                    <input type="number" class="form-control" name="cantidad" required min="0">
-                    <label for="cantidad">Cantidad</label>
-                    <div class="invalid-feedback">Por favor, complete este campo.</div>
-                </div>
-
-                <div class="mb-3 form-floating">
-                    <input id="descuento" type="number" class="form-control" name="descuento" required min="0">
-                    <label for="descuento">Descuento</label>
-                    <div class="invalid-feedback">Por favor, complete este campo.</div>
-                </div>
 
 
-                </form>
-            </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="iq-side-content sticky-xl-top d-flex justify-content-between align-items-center m-4">
+                                    <label for="monto"> Producto:
+                                        <?php echo ProductoData::getByID($detalleventa->id_producto)->nombre ?>
+                                    </label>
+                                </div>
+
+                                <div class="iq-side-content sticky-xl-top d-flex justify-content-between align-items-center m-4">
+                                    <label for="monto"> Cantidad:
+                                        <?php echo $detalleventa->cantidad ?>
+                                    </label>
+                                </div>
+
+
+                                <div class="iq-side-content sticky-xl-top d-flex justify-content-between align-items-center m-4">
+                                    <label for="monto"> Monto:
+                                        <?php echo $detalleventa->monto ?>
+                                    </label>
+                                </div>
+
+                                <div class="iq-side-content sticky-xl-top d-flex justify-content-between align-items-center m-4">
+                                    <label for="monto"> Descuento:
+                                        <?php echo $detalleventa->descuento ?>
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <?php
+                    }
+                }
+                ?>
+
+
+
+
+            </form>
         </div>
-        <div class="mb-3 form-floating text-end">
-            <button type="submit" class="btn btn-primary">Agregar</button>
-        </div>
-    </div>
 
-    <script>
-        function tuFuncion() {
-            var selectElement = document.getElementById('producto_select');
-            var inputText = document.getElementById("monto");
-            inputText.value = selectElement.options[selectElement.selectedIndex].getAttribute('data-precio');
-        }
-    </script>
-    <?php
+        <script>
+            function tuFuncion() {
+                var selectElement = document.getElementById('producto_select');
+                var inputText = document.getElementById("monto");
+                inputText.value = selectElement.options[selectElement.selectedIndex].getAttribute('data-precio');
+            }
+        </script>
+        <?php
+            }
 }
 
-if (isset($_GET["opt"]) && $_GET["opt"] == "Visualizar") {
+if (isset($_GET["opt"]) && $_GET["opt"] == "view") {
     if (!isset($_GET["id"]) or $_GET["id"] == "") {
         Core::addToastr('info', 'Error');
         Core::redir("../?view=ventas&opt=all");
@@ -186,86 +218,88 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "Visualizar") {
     }
 
     if ($found) {
-        $detvent = Detalles_VentaData::getbyID($vent->id_venta);
-        $listaClientes = ClienteData::getclientes();
-        $listaProductos = ProductoData::getproducts();
         ?>
-        <div class="table-responsive m-4">
-            <div class="iq-side-content sticky-xl-top d-flex justify-content-between align-items-center">
-                <h2> Detalles de Venta</h2>
-            </div>
-            <br>
-            <div class="card">
-                <div class="card-body">
-                    <form method="post" action="./?action=ventas&opt=update">
-                        <div class="mb-3">
-                            <label for="Select" class="form-label">Cliente</label>
-                            <select id="Select" disabled class="form-select" name="id_cliente">
-                                <?php
-                                foreach ($listaClientes as $key => $cl) {
-                                    ?>
-                                    <option value="<?php echo $cl->id_cliente ?>" <?php if ($cl->id_cliente == $vent->id_cliente)
-                                           echo "selected" ?>>
-                                        <?php echo $cl->nombre ?>
-                                    </option>
-                                    <?php
-                                }
-                                ?>
-                            </select>
-                        </div>
 
-                        <div class="mb-3 form-floating">
-                            <input type="date" disabled class="form-control" name="fecha" value="<?php echo $vent->fecha ?>">
-                            <label for="floatingInput1">Fecha</label>
-                        </div>
+        <div class="table-responsive mx-4">
 
-                        <div class="mb-3">
-                            <label for="Select" class="form-label">Producto</label>
-                            <select id="Select" disabled class="form-select" name="id_producto">
-                                <?php
-                                foreach ($listaProductos as $key => $prod) {
-                                    ?>
-                                    <option value="<?php echo $prod->id_producto ?>" <?php if ($prod->id_producto == $detvent->id_producto)
-                                           echo "selected" ?>>
-                                        <?php echo $prod->nombre ?>
-                                    </option>
-                                    <?php
-                                }
-                                ?>
-                            </select>
-                        </div>
+            <form action="./?action=ventas&opt=add" method="post" id="ventasForm" class="needs-validation" novalidate>
+                <div class="iq-side-content sticky-xl-top d-flex justify-content-between align-items-center m-4">
+                    <h2> Detalles de venta </h2>
 
-                        <div class="mb-3 form-floating">
-                            <input type="number" disabled class="form-control" name="monto" value="<?php echo $vent->monto ?>">
-                            <label for="floatingInput1">Precio</label>
-                        </div>
-
-                        <div class="mb-3 form-floating">
-                            <input id="cantidad" disabled class="form-control" name="cantidad"
-                                value="<?php echo $detvent->cantidad ?>">
-                            <label for="floatingInput1">Cantidad</label>
-                        </div>
-
-                        <div class="mb-3 form-floating">
-                            <input type="number" disabled class="form-control" name="descuento"
-                                value="<?php echo $vent->descuento ?>">
-                            <label for="floatingInput1">Descuento</label>
-                        </div>
-
-                        <div class="mb-3 form-floating">
-                            <input type="hidden" class="form-control" name="id_venta" value="<?php echo $detvent->id_venta ?>">
-                        </div>
-
-                        <div class="mb-3 form-floating text-end">
-                            <a href="./?action=ventas&opt=delete&id=<?php echo $vent->id_venta; ?>" class="btn btn-danger">
-                                Eliminar </a>
-                        </div>
-                    </form>
+                    <?php
+                    if ($_GET["id"] != 0) {
+                        $venta = VentaData::getbyID($_GET["id"]);
+                        $listaDetallesVenta = Detalles_VentaData::getDetallesbyventa($_GET["id"]);
+                    }
+                    ?>
                 </div>
-            </div>
-        </div>
+                <div class="card">
+                    <div class="card-body">
 
-        <?php
+                        <input type="hidden" class="form-control" name="id_venta" id="id_venta" value="<?php echo $_GET["id"] ?>" readonly>
+
+                        <div class="mb-3 form-floating">
+                            <input type="text" class="form-control" name="cliente" id="cliente"
+                                value="<?php echo ClienteData::getbyID($vent->id_cliente)->nombre ?>" readonly>
+                            <label for="monto">Cliente</label>
+                        </div>
+
+
+                        <div class="mb-3 form-floating">
+                            <input type="text" class="form-control" name="fecha" id="fecha" value="<?php echo ($vent->fecha) ?>"
+                                readonly>
+                            <label for="monto">Fecha</label>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="iq-side-content sticky-xl-top d-flex justify-content-between align-items-center m-4">
+                    <h2> Productos </h2>
+                    <!-- <button type="submit" class="btn btn-primary">Agregar Producto</button> -->
+                </div> 
+
+                <?php
+                if ($_GET["id"] != 0) {
+                    if (count($listaDetallesVenta) > 0) {
+                        foreach ($listaDetallesVenta as $key => $detalleventa) {
+                            ?>
+
+                            <div class="card">
+                                <div class="card-body">
+
+                                    <div class="iq-side-content sticky-xl-top d-flex justify-content-between align-items-center m-4">
+                                        <label for="monto"> Producto:
+                                            <?php echo ProductoData::getByID($detalleventa->id_producto)->nombre ?>
+                                        </label>
+                                        <label for="monto"> Cantidad:
+                                            <?php echo $detalleventa->cantidad ?>
+                                        </label>
+
+
+                                        <label for="monto"> Monto:
+                                            <?php echo $detalleventa->monto ?>
+                                        </label>
+
+                                        <label for="monto"> Descuento:
+                                            <?php echo $detalleventa->descuento ?>
+                                        </label>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <?php
+                        }
+                    }
+                    ?>
+
+                </form>
+            </div>
+
+            <?php
+                }
     }
 }
 ?>

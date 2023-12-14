@@ -12,6 +12,7 @@ class Detalles_VentaData extends Extra{
         $this->id_venta = "";
         $this->id_producto = "";
         $this->cantidad = "";
+        $this->descuento = "";
         $this->monto = "";
     }
     
@@ -25,9 +26,9 @@ class Detalles_VentaData extends Extra{
 
     }
 	
-    public static function getDetalles(){
+    public static function getDetallesbyventa($id_venta){
 
-        $sql = "select * from detalles_venta";
+        $sql = "select * from detalles_venta where id_venta = {$id_venta}";
         $query = Executor::doit($sql);
 
         return Model::many($query[0],new Detalles_VentaData);
@@ -36,8 +37,8 @@ class Detalles_VentaData extends Extra{
 	
     public function add(){
 
-        $sql = "INSERT INTO detalles_venta (id_venta, id_producto, cantidad, monto) 
-            VALUES ($this->id_venta, $this->id_producto, $this->cantidad, $this->monto)";
+        $sql = "INSERT INTO detalles_venta (id_venta, id_producto, descuento, cantidad, monto) 
+            VALUES ($this->id_venta, $this->id_producto, $this->descuento, $this->cantidad, $this->monto)";
     
 		return Executor::doit($sql);
     }
@@ -46,6 +47,7 @@ class Detalles_VentaData extends Extra{
 
         $sql = "update detalles_venta set id_producto= $this->id_producto, 
                                     cantidad= $this->cantidad,
+                                    descuento= $this->descuento,
                                     monto= $this->monto 
                                     where id_venta =" .$this->id_venta;
     
