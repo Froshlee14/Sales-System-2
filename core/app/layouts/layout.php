@@ -298,12 +298,12 @@
 
           <!-- Footer Section Start -->
           <footer class="footer">
-              <div class="footer-body">
+              <!-- <div class="footer-body">
                   
                   <div class="right-panel">                
                      
                   </div>
-              </div>
+              </div> -->
           </footer>
           <!-- Footer Section End -->   
         </main>
@@ -344,7 +344,7 @@
                                   <!--logo End-->
                                                                                   
                                   
-                                  <h4 class="logo-title ms-3">Clase</h4>
+                                  <h4 class="logo-title ms-3">Sales System</h4>
                                </a>
                                <h2 class="mb-2 text-center">INICIAR SESION</h2>
                                <p class="text-center">INGRESA TUS DATOS PARA INICIAR SESION.</p>
