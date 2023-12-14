@@ -141,7 +141,7 @@
                         <li class="nav-item">
                                     <a class="nav-link " href="./?view=clientes&opt=all">
                                       <i class="icon">
-                                           <i class="bi bi-circle"></i>
+                                           <i class="bi bi-person"></i>
                                         </i>
                                       <i class="sidenav-mini-icon"> C </i>
                                       <span class="item-name"> Clientes </span>
@@ -150,44 +150,37 @@
                         <li class="nav-item">
                                     <a class="nav-link " href="./?view=proveedores&opt=all">
                                       <i class="icon">
-                                           <i class="bi bi-circle"></i>
+                                           <i class="bi bi-person-fill"></i>
                                         </i>
                                       <i class="sidenav-mini-icon"> P </i>
                                       <span class="item-name"> Proveedores </span>
                                     </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="collapse" href="#gestion-menu" role="button" aria-expanded="false" aria-controls="gestion-menu">
-                                <i class="bi bi-list">
+                            <a class="nav-link active" aria-current="page">
+                                <i class="bi bi-shop">
 
                                 </i>
                                 <span class="item-name">Gestion</span>
-                                <i class="right-icon">
-                                    <svg class="icon-18" xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                    </svg>
-                                </i>
                             </a>
-                            <ul class="sub-nav collapse" id="gestion-menu" data-bs-parent="#sidebar-menu">
-                                <li class="nav-item">
-                                    <a class="nav-link " href="./?view=productos&opt=all">
-                                      <i class="icon">
-                                           <i class="bi bi-circle"></i>
-                                        </i>
-                                      <i class="sidenav-mini-icon"> P </i>
-                                      <span class="item-name"> Productos </span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link " href="./?view=ventas&opt=all">
-                                      <i class="icon">
-                                           <i class="bi bi-circle"></i>
-                                        </i>
-                                      <i class="sidenav-mini-icon"> V </i>
-                                      <span class="item-name"> Ventas </span>
-                                    </a>
-                                </li>
-                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="./?view=productos&opt=all">
+                                <i class="icon">
+                                    <i class="bi bi-cup-hot"></i>
+                                </i>
+                                <i class="sidenav-mini-icon"> P </i>
+                                <span class="item-name"> Productos </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="./?view=ventas&opt=all">
+                                <i class="icon">
+                                    <i class="bi bi-cart4"></i>
+                                </i>
+                                <i class="sidenav-mini-icon"> V </i>
+                                <span class="item-name"> Ventas </span>
+                            </a>
                         </li>
                         <li><hr class="hr-horizontal"></li>
                         <!--<li class="nav-item static-item">
@@ -209,7 +202,7 @@
                             <ul class="sub-nav collapse" id="sidebar-special" data-bs-parent="#sidebar-menu">
                                 <li class="nav-item">
                                     <a class="nav-link " href="./?view=users&opt=all">
-                                      <i class="icon"><i class="bi bi-circle"></i> </i><i class="sidenav-mini-icon"> U </i><span class="item-name">Usuarios</span>
+                                      <i class="icon"><i class="bi bi-person-circle"></i> </i><i class="sidenav-mini-icon"> U </i><span class="item-name">Usuarios</span>
                                     </a>
                                 </li>
                             </ul>
