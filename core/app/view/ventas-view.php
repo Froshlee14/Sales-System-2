@@ -93,7 +93,8 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "add") {
             <div class="card">
                 <div class="card-body">
 
-                        <input type="hidden" class="form-control" name="id_venta" id="id_venta" value="<?php echo $_GET["id_venta"] ?>">
+                    <input type="hidden" class="form-control" name="id_venta" id="id_venta"
+                        value="<?php echo $_GET["id_venta"] ?>">
 
                     <div class="mb-3">
                         <label for="cliente" class="form-label">Cliente</label>
@@ -236,7 +237,8 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "view") {
                 <div class="card">
                     <div class="card-body">
 
-                        <input type="hidden" class="form-control" name="id_venta" id="id_venta" value="<?php echo $_GET["id"] ?>" readonly>
+                        <input type="hidden" class="form-control" name="id_venta" id="id_venta"
+                            value="<?php echo $_GET["id"] ?>" readonly>
 
                         <div class="mb-3 form-floating">
                             <input type="text" class="form-control" name="cliente" id="cliente"
@@ -258,7 +260,7 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "view") {
                 <div class="iq-side-content sticky-xl-top d-flex justify-content-between align-items-center m-4">
                     <h2> Productos </h2>
                     <!-- <button type="submit" class="btn btn-primary">Agregar Producto</button> -->
-                </div> 
+                </div>
 
                 <?php
                 if ($_GET["id"] != 0) {
@@ -292,8 +294,18 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "view") {
                             </div>
                             <?php
                         }
-                    }
-                    ?>
+
+                    } else {
+                        ?>
+                        <div class="alert alert-primary d-flex align-items-center" role="alert">
+                            <svg class="bi flex-shrink-0 me-2" width="24" height="24">
+                                <use xlink:href="#info-fill" />
+                            </svg>
+                            <div>
+                                Esta venta no tiene productos
+                            </div>
+                        </div>
+                    <?php } ?>
 
                 </form>
             </div>
