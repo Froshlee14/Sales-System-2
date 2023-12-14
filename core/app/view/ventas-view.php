@@ -102,6 +102,7 @@ if(isset($_GET["opt"]) && $_GET["opt"] == "add"){
 
                 <?php
                     // Obtiene la fecha actual en el formato YYYY-MM-DD
+                    date_default_timezone_set('America/Mexico_City');
                     $fechaActual = date("Y-m-d");
                 ?>
 
