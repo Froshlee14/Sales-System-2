@@ -138,7 +138,7 @@ if(isset($_GET["opt"]) && $_GET["opt"] == "add"){
                 </div>
 
                 <div class="mb-3 form-floating">
-                    <input id="descuento" type="number" class="form-control" name="descuento" required>
+                    <input id="descuento" type="number" class="form-control" name="descuento" required min="0">
                     <label for="descuento">Descuento</label>
                     <div class="invalid-feedback">Por favor, complete este campo.</div>
                 </div>
