@@ -84,7 +84,7 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "add") {
                     $listaDetallesVenta = Detalles_VentaData::getDetallesbyventa($_GET["id_venta"]);
                     ?>
 
-                    <button type="submit" class="btn btn-primary">Guardar venta</button>
+                        <a class="btn btn-success" href="./?view=ventas&opt=all"> Terminar venta </a>
 
                     <?php
                 }
@@ -125,11 +125,11 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "add") {
                     <?php
                     // Obtiene la fecha actual en el formato YYYY-MM-DD
                     date_default_timezone_set('America/Mexico_City');
-                    $fechaActual = date("Y-m-d");
+                    $fechaActual = date("Y-m-d H:i:s");;
                     ?>
 
                     <div class="mb-3 form-floating">
-                        <input type="date" class="form-control" name="fecha" id="fecha" required value="<?php if ($_GET["id_venta"] != 0) {
+                        <input type="datetime-local" class="form-control" name="fecha" id="fecha" required value="<?php if ($_GET["id_venta"] != 0) {
                             echo $venta->fecha;
                         } else {
                             echo $fechaActual;
@@ -248,7 +248,7 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "view") {
 
 
                         <div class="mb-3 form-floating">
-                            <input type="text" class="form-control" name="fecha" id="fecha" value="<?php echo ($vent->fecha) ?>"
+                            <input type="datetime-local" class="form-control" name="fecha" id="fecha" value="<?php echo ($vent->fecha) ?>"
                                 readonly>
                             <label for="monto">Fecha</label>
                         </div>
@@ -266,6 +266,10 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "view") {
                 if ($_GET["id"] != 0) {
                     if (count($listaDetallesVenta) > 0) {
                         foreach ($listaDetallesVenta as $key => $detalleventa) {
+
+                            $producto = ProductoData::getByID($detalleventa->id_producto);
+
+                            $precioantes = ($detalleventa->monto/$detalleventa->cantidad ) + $detalleventa->descuento ;
                             ?>
 
                             <div class="card">
@@ -273,10 +277,20 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "view") {
 
                                     <div class="iq-side-content sticky-xl-top d-flex justify-content-between align-items-center m-4">
                                         <label for="monto"> Producto:
-                                            <?php echo ProductoData::getByID($detalleventa->id_producto)->nombre ?>
+                                            <?php echo $producto->nombre ?>
                                         </label>
+
+                                        <label for="monto"> Precio :
+                                            <?php echo $precioantes ?>
+                                        </label>
+
                                         <label for="monto"> Cantidad:
                                             <?php echo $detalleventa->cantidad ?>
+                                        </label>
+
+
+                                        <label for="monto"> Descuento:
+                                            <?php echo $detalleventa->descuento ?>
                                         </label>
 
 
@@ -284,9 +298,6 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "view") {
                                             <?php echo $detalleventa->monto ?>
                                         </label>
 
-                                        <label for="monto"> Descuento:
-                                            <?php echo $detalleventa->descuento ?>
-                                        </label>
                                     </div>
 
 

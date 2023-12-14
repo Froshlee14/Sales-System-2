@@ -45,7 +45,7 @@ $listaProductos = ProductoData::getproducts();
             </div>
 
             <div class="mb-3 form-floating">
-                <input type="number" class="form-control" name="cantidad" required min="0">
+                <input type="number" class="form-control" name="cantidad" required min="1">
                 <label for="cantidad">Cantidad</label>
                 <div class="invalid-feedback">Por favor, complete este campo.</div>
             </div>

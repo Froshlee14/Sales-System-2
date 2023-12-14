@@ -11,7 +11,7 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "add") {
         $ve->id_cliente = $_POST["id_cliente"];
 
         $fechaFormulario = $_POST["fecha"];
-        $fechaFormateada = date('Y-m-d', strtotime($fechaFormulario));
+        $fechaFormateada = date('Y-m-d H:i:s', strtotime($fechaFormulario));
     
         $ve->fecha = $fechaFormateada;
         $ve->monto = 0;

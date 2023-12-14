@@ -96,7 +96,7 @@ USE proyecto_ventas;
 	
 	CREATE TABLE venta(
 		id_venta INT NOT NULL AUTO_INCREMENT,
-		fecha DATE,
+		fecha DATETIME,
 		id_cliente INT,
 		monto INT,
 		
