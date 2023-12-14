@@ -98,8 +98,13 @@ if(isset($_GET["opt"]) && $_GET["opt"] == "add"){
                     <div class="invalid-feedback">Por favor, seleccione un cliente.</div>
                 </div>
 
+                <?php
+                    // Obtiene la fecha actual en el formato YYYY-MM-DD
+                    $fechaActual = date("Y-m-d");
+                ?>
+
                 <div class="mb-3 form-floating">
-                    <input type="date" class="form-control" name="fecha" id="fecha" required>
+                    <input type="date" class="form-control" name="fecha" id="fecha" required value="<?php echo $fechaActual; ?>" readonly >
                     <label for="fecha">Fecha</label>
                     <div class="invalid-feedback">Por favor, seleccione una fecha.</div>
                 </div>
@@ -127,7 +132,7 @@ if(isset($_GET["opt"]) && $_GET["opt"] == "add"){
                 </div>
 
                 <div class="mb-3 form-floating">
-                    <input type="number" class="form-control" name="cantidad" required>
+                    <input type="number" class="form-control" name="cantidad" required min="0">
                     <label for="cantidad">Cantidad</label>
                     <div class="invalid-feedback">Por favor, complete este campo.</div>
                 </div>

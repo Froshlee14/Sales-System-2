@@ -26,132 +26,138 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "all") {
             if (count($listaProductos) > 0) {
                 ?>
 
-                <table class="table table-striped">
-                    <thead>
-                        <tr class="table-primary">
-                            <th scope="col"> ID </th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Precio</th>
-                            <th scope="col">Stock</th>
-                            <th scope="col">Proveedor</th>
-                            <th scope="col">Categoria</th>
-                            <th> Acciones </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-
-                        <?php
-                        foreach ($listaProductos as $key => $row) {
-
-                            $prov = ProveedorData::getbyID($row->id_proveedor);
-                            $cat = CategoriaData::getbyID($row->id_categoria);
-
-                            ?>
-                            <tr>
-                                <th scope="row">
-                                    <?php echo $row->id_producto; ?>
-                                </th>
-                                <td>
-                                    <?php echo $row->nombre; ?>
-                                </td>
-                                <td>
-                                    <?php echo $row->precio; ?>
-                                </td>
-                                <td>
-                                    <?php echo $row->stock; ?>
-                                </td>
-                                <td>
-                                    <?php echo $prov->nombre; ?>
-                                </td>
-                                <td>
-                                    <?php echo $cat->nombre ?>
-                                </td>
-
-                                <td> <a href="./?view=productos&opt=edit&id= <?php echo $row->id_producto; ?> "> Ver/Editar </a>
-                                </td>
-                                <!-- <td> <a href="./?action=users&opt=delete&id= <?php echo $row->id; ?> " class"btn btn-warning"> Eliminar </a></td> -->
+                <div class=" table-responsive m-4">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr class="table-primary">
+                                <th scope="col"> ID </th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">Stock</th>
+                                <th scope="col">Proveedor</th>
+                                <th scope="col">Categoria</th>
+                                <th> Acciones </th>
                             </tr>
+                        </thead>
+                        <tbody>
+
 
                             <?php
-                        }
-                        ?>
+                            foreach ($listaProductos as $key => $row) {
 
-                    </tbody>
-                </table>
+                                $prov = ProveedorData::getbyID($row->id_proveedor);
+                                $cat = CategoriaData::getbyID($row->id_categoria);
+
+                                ?>
+                                <tr>
+                                    <th scope="row">
+                                        <?php echo $row->id_producto; ?>
+                                    </th>
+                                    <td>
+                                        <?php echo $row->nombre; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row->precio; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row->stock; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $prov->nombre; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $cat->nombre ?>
+                                    </td>
+
+                                    <td> <a href="./?view=productos&opt=edit&id= <?php echo $row->id_producto; ?> "> Ver/Editar </a>
+                                    </td>
+                                    <!-- <td> <a href="./?action=users&opt=delete&id= <?php echo $row->id; ?> " class"btn btn-warning"> Eliminar </a></td> -->
+                                </tr>
+
+                                <?php
+                            }
+                            ?>
+
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
 
 
 
 
 
-        <?php
+            <?php
             }
             if (count($listaProductosInactivos) > 0) {
                 ?>
 
-        <div class="card iq-document-card">
-            <div class="iq-side-content sticky-xl-top d-flex justify-content-between align-items-center m-4">
-                <h2>Productos inactivos</h2>
+            <div class="card iq-document-card">
+                <div class="iq-side-content sticky-xl-top d-flex justify-content-between align-items-center m-4">
+                    <h2>Productos inactivos</h2>
+                </div>
+                <div class=" table-responsive m-4">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr class="table-primary">
+                                <th scope="col"> ID </th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">Stock</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">Proveedor</th>
+                                <th scope="col">Categoria</th>
+                                <th> Acciones </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <?php
+                            foreach ($listaProductosInactivos as $key => $row) {
+
+                                $prov = ProveedorData::getbyID($row->id_proveedor);
+                                $cat = CategoriaData::getbyID($row->id_categoria);
+
+                                ?>
+                                <tr>
+                                    <th scope="row">
+                                        <?php echo $row->id_producto; ?>
+                                    </th>
+                                    <td>
+                                        <?php echo $row->nombre; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row->precio; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row->stock; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $prov->nombre; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $cat->nombre ?>
+                                    </td>
+
+                                    <td> <a href="./?view=productos&opt=edit&id= <?php echo $row->id_producto; ?> "> Ver/Editar </a>
+                                    </td>
+                                    <!-- <td> <a href="./?action=users&opt=delete&id= <?php echo $row->id; ?> " class"btn btn-warning"> Eliminar </a></td> -->
+                                </tr>
+
+                                <?php
+                            }
+                            ?>
+
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <table class="table table-bordered">
-                <thead>
-                    <tr class="table-primary">
-                        <th scope="col"> ID </th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Precio</th>
-                        <th scope="col">Stock</th>
-                        <th scope="col">Precio</th>
-                        <th scope="col">Proveedor</th>
-                        <th scope="col">Categoria</th>
-                        <th> Acciones </th>
-                    </tr>
-                </thead>
-                <tbody>
 
-                    <?php
-                    foreach ($listaProductosInactivos as $key => $row) {
-
-                        $prov = ProveedorData::getbyID($row->id_proveedor);
-                        $cat = CategoriaData::getbyID($row->id_categoria);
-
-                        ?>
-                        <tr>
-                            <th scope="row">
-                                <?php echo $row->id_producto; ?>
-                            </th>
-                            <td>
-                                <?php echo $row->nombre; ?>
-                            </td>
-                            <td>
-                                <?php echo $row->precio; ?>
-                            </td>
-                            <td>
-                                <?php echo $row->stock; ?>
-                            </td>
-                            <td>
-                                <?php echo $prov->nombre; ?>
-                            </td>
-                            <td>
-                                <?php echo $cat->nombre ?>
-                            </td>
-
-                            <td> <a href="./?view=productos&opt=edit&id= <?php echo $row->id_producto; ?> "> Ver/Editar </a></td>
-                            <!-- <td> <a href="./?action=users&opt=delete&id= <?php echo $row->id; ?> " class"btn btn-warning"> Eliminar </a></td> -->
-                        </tr>
-
-                        <?php
-                    }
-                    ?>
-
-                </tbody>
-            </table>
         </div>
-    <?php       
-        }
-        if(count($listaProductos) == 0 && count($listaProductosInactivos) == 0){
-        ?>
+        <?php
+            }
+            if (count($listaProductos) == 0 && count($listaProductosInactivos) == 0) {
+                ?>
         <div class="alert alert-bottom alert-danger alert-dismissible fade show " role="alert">
             <span> No hay registros</span>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -296,21 +302,23 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "edit") {
                         </div>
 
                         <div class="mb-3">
-                                <label for="Select" class="form-label mx-1">Estado</label>
-                                <select id="Select" class="form-select" name = "estado" required>
-                                    <option value = "1"  <?php if ($prod->status ==1) echo "selected" ?>> Activo </option>
-                                    <option value = "0" <?php if ($prod->status ==0) echo "selected" ?>> Inactivo </option>
+                            <label for="Select" class="form-label mx-1">Estado</label>
+                            <select id="Select" class="form-select" name="estado" required>
+                                <option value="1" <?php if ($prod->status == 1)
+                                    echo "selected" ?>> Activo </option>
+                                    <option value="0" <?php if ($prod->status == 0)
+                                    echo "selected" ?>> Inactivo </option>
                                 </select>
                                 <div class="invalid-feedback">Por favor, selecciona un campo.</div>
-                        </div>
+                            </div>
 
 
-                        <div class="mb-3">
-                            <div class="invalid-feedback">Por favor, selecciona un campo.</div>
-                            <label for="Select" class="form-label">Proveedor</label>
-                            <select id="Select" class="form-select" name="id_proveedor" required>
+                            <div class="mb-3">
+                                <div class="invalid-feedback">Por favor, selecciona un campo.</div>
+                                <label for="Select" class="form-label">Proveedor</label>
+                                <select id="Select" class="form-select" name="id_proveedor" required>
 
-                                <?php
+                                    <?php
                                 foreach ($listaproveedores as $key => $p) {
                                     ?>
                                     <option value="<?php echo $p->id_proveedor ?>" <?php if ($p->id_proveedor == $prod->id_proveedor)
