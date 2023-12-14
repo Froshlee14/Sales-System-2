@@ -56,7 +56,7 @@
     <?php if(isset($_SESSION["user_id"])):?>
         <aside class="sidebar sidebar-default sidebar-white sidebar-base navs-rounded-all ">
             <div class="sidebar-header d-flex align-items-center justify-content-start">
-                <a href="./" class="navbar-brand">
+                <div class="navbar-brand">
                     <!--Logo start-->
                     <!--logo End-->
                     
@@ -85,7 +85,7 @@
                     
                     
                     <h4 class="logo-title">Sales System</h4>
-                </a>
+                </div>
                 <div class="sidebar-toggle" data-toggle="sidebar" data-active="true">
                     <i class="icon">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -112,7 +112,7 @@
                                 <i class="bi bi-house">
 
                                 </i>
-                                <span class="item-name">Dashboard</span>
+                                <span class="item-name">Inicio</span>
                             </a>
                         </li>
                         <!-- <li class="nav-item">
@@ -227,7 +227,7 @@
             <!--Nav Start-->
             <nav class="nav navbar navbar-expand-lg navbar-light iq-navbar">
               <div class="container-fluid navbar-inner">
-                <a href="../dashboard/index.html" class="navbar-brand">
+                <div class="navbar-brand">
                     <!--Logo start-->
                     <!--logo End-->
                     
@@ -251,8 +251,8 @@
                         </div>
                     </div>
                     <!--logo End-->
-                    <h4 class="logo-title">LB Hope UI</h4>
-                </a>
+                    <h4 class="logo-title">Sales System</h4>
+                </div>
                 <div class="sidebar-toggle" data-toggle="sidebar" data-active="true">
                     <i class="icon">
                      <svg  width="20px" class="icon-20" viewBox="0 0 24 24">
