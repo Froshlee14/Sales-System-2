@@ -38,7 +38,7 @@ if(isset($_GET["opt"]) && $_GET["opt"] == "login"){
 			/*echo "<br><br>Hola, $username";
 			echo "<br><br>";
 			*/
-			Core::redir("./?view=home");
+			Core::redir("./?view=index");
 		}else{
 			//Core::redir("./");
 		}
