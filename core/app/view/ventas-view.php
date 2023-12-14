@@ -17,6 +17,7 @@
         <?php
         if(count($listaVentas) > 0){
         ?>
+        <div class="table-responsive mx-4">
         <table class="table table-striped">
             <thead>
                 <tr class="table-primary">
@@ -52,6 +53,7 @@
                 ?>
             </tbody>
         </table>
+        </div>
     </div>
 </div>
 <?php

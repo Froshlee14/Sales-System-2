@@ -1,29 +1,30 @@
 <?php
 
-	if(!isset($_SESSION["user_id"])){
-		Core::redir("./");
-	}
+if (!isset($_SESSION["user_id"])) {
+    Core::redir("./");
+}
 
-	if(isset($_GET["opt"]) && $_GET["opt"] == "all"){
-		
-		$listaClientes = ClienteData::getclientes();
-        $listaClientesInactivos = ClienteData::getclientesInactivos();
-		//var_dump($listaClientes);
+if (isset($_GET["opt"]) && $_GET["opt"] == "all") {
 
-?>
+    $listaClientes = ClienteData::getclientes();
+    $listaClientesInactivos = ClienteData::getclientesInactivos();
+    //var_dump($listaClientes);
 
-            <div class=" table-responsive m-4">
+    ?>
 
-                <div class= "card iq-document-card">
-                    <div class="iq-side-content sticky-xl-top d-flex justify-content-between align-items-center m-4">
-                        <h2>Clientes</h2>
-                        <a class="btn btn-primary" href="./?view=clientes&opt=add"> Nuevo </a>
-                    </div>
+    <div class=" table-responsive m-4">
 
-                    <?php
-		            if(count($listaClientes)>0){
-	                ?>
-                    <table  class="table table-bordered"> 
+        <div class="card iq-document-card">
+            <div class="iq-side-content sticky-xl-top d-flex justify-content-between align-items-center m-4">
+                <h2>Clientes</h2>
+                <a class="btn btn-primary" href="./?view=clientes&opt=add"> Nuevo </a>
+            </div>
+
+            <?php
+            if (count($listaClientes) > 0) {
+                ?>
+                <div class="table-responsive mx-4">
+                    <table class="table table-bordered">
                         <thead>
                             <tr class="table-primary">
                                 <th scope="col"> ID </th>
@@ -32,35 +33,41 @@
                             </tr>
                         </thead>
                         <tbody>
-                        
+
 
                             <?php
-                                foreach($listaClientes as $key => $row){
-                            ?>
+                            foreach ($listaClientes as $key => $row) {
+                                ?>
                                 <tr>
-                                    <th scope="row"> <?php echo $row->id_cliente;?> </th>
-                                    <td> <?php echo $row->nombre;?> </td>
-                                    <td> <a href="./?view=clientes&opt=edit&id= <?php echo $row->id_cliente;?> "> Ver/Editar </a></td>
+                                    <th scope="row">
+                                        <?php echo $row->id_cliente; ?>
+                                    </th>
+                                    <td>
+                                        <?php echo $row->nombre; ?>
+                                    </td>
+                                    <td> <a href="./?view=clientes&opt=edit&id= <?php echo $row->id_cliente; ?> "> Ver/Editar </a>
+                                    </td>
                                 </tr>
-                            
-                            <?php
-                                }
+
+                                <?php
+                            }
                             ?>
-                        
+
                         </tbody>
                     </table>
                 </div>
-		
-	        <?php
-		        }
-                if(count($listaClientesInactivos)>0){
-            ?>
+            </div>
 
-            <div class= "card iq-document-card">
+            <?php
+            }
+            if (count($listaClientesInactivos) > 0) {
+                ?>
+
+            <div class="card iq-document-card">
                 <div class="iq-side-content sticky-xl-top d-flex justify-content-between align-items-center m-4">
                     <h2>Clientes inactivos</h2>
                 </div>
-                <table  class="table table-bordered"> 
+                <table class="table table-bordered">
                     <thead>
                         <tr class="table-primary">
                             <th scope="col"> ID </th>
@@ -69,227 +76,245 @@
                         </tr>
                     </thead>
                     <tbody>
-                    
+
 
                         <?php
-                            foreach($listaClientesInactivos as $key => $row){
-                        ?>
+                        foreach ($listaClientesInactivos as $key => $row) {
+                            ?>
                             <tr>
-                                <th scope="row"> <?php echo $row->id_cliente;?> </th>
-                                <td> <?php echo $row->nombre;?> </td>
-                                <td> <a href="./?view=clientes&opt=edit&id= <?php echo $row->id_cliente;?> "> Ver/Editar </a></td>
+                                <th scope="row">
+                                    <?php echo $row->id_cliente; ?>
+                                </th>
+                                <td>
+                                    <?php echo $row->nombre; ?>
+                                </td>
+                                <td> <a href="./?view=clientes&opt=edit&id= <?php echo $row->id_cliente; ?> "> Ver/Editar </a></td>
                             </tr>
-                        
-                        <?php
-                            }
+
+                            <?php
+                        }
                         ?>
-                    
+
                     </tbody>
                 </table>
             </div>
         </div>
-    </div>
-</div>
+        </div>
+        </div>
 
 
-    
-<?php
-    }
-		if(count($listaClientes) == 0 && count($listaClientesInactivos) == 0){
-	?>
+
+        <?php
+            }
+            if (count($listaClientes) == 0 && count($listaClientesInactivos) == 0) {
+                ?>
         <div class="alert alert-bottom alert-danger alert-dismissible fade show " role="alert">
             <span> No hay registros</span>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-	<?php
-		}
-	}
-	if(isset($_GET["opt"]) && $_GET["opt"] == "add"){
-	?>
-            <div class=" table-responsive mx-4">
-                <div class="iq-side-content sticky-xl-top d-flex justify-content-between align-items-center">
-                    <h2> Nuevo Cliente</h2>
-                </div>
-                <br>	
-                <div class="card">
-                
-                    <div class="card-body">		
-                        <form method="post" action="./?action=clientes&opt=add"  class="needs-validation" novalidate>
+        <?php
+            }
+}
+if (isset($_GET["opt"]) && $_GET["opt"] == "add") {
+    ?>
+    <div class=" table-responsive mx-4">
+        <div class="iq-side-content sticky-xl-top d-flex justify-content-between align-items-center">
+            <h2> Nuevo Cliente</h2>
+        </div>
+        <br>
+        <div class="card">
 
-                            <h5 class="card-title"> Datos generales </h5>
+            <div class="card-body">
+                <form method="post" action="./?action=clientes&opt=add" class="needs-validation" novalidate>
 
-                            <div class="mb-3 form-floating">
-                                <input type="text" class="form-control" id="nombre" placeholder="Nombre" name="nombre" required>
-                                <label for="floatingInput1">Nombre</label>
-                                <div class="invalid-feedback">Por favor, complete este campo.</div>
-                            </div>
+                    <h5 class="card-title"> Datos generales </h5>
 
-                            <div class="mb-3 form-floating">
-                                <input type="text" class="form-control" id="numero_telefonico" placeholder="Numero telefonico" name="numero_telefonico" required>
-                                <label for="floatingInput1">Numero telefonico</label>
-                                <div class="invalid-feedback">Por favor, complete este campo.</div>
-                            </div>
-
-                            <h5 class="card-title"> Direccion </h5>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="mb-3 form-floating">
-                                        <input type="text" class="form-control" id="calle" placeholder="Calle" name="calle" required>
-                                        <label for="floatingInput1">Calle</label>
-                                        <div class="invalid-feedback">Por favor, complete este campo.</div>
-                                    </div>
-                                </div>
-
-                            <div class="col-md-6">
-                                    <div class="mb-3 form-floating">
-                                        <input type="text" class="form-control" id="numero" placeholder="Numero" name="numero" required>
-                                        <label for="floatingInput1">Numero</label>
-                                        <div class="invalid-feedback">Por favor, complete este campo.</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="mb-3 form-floating">
-                                <input type="tetx" class="form-control" id="colonia" placeholder="Colonia"name="colonia" required>
-                                <label for="floatingInput1">Colonia</label>
-                                <div class="invalid-feedback">Por favor, complete este campo.</div>
-                            </div>
-
-                            <div class="mb-3 form-floating">
-                                <input type="tetx" class="form-control" id="ciudad" placeholder="Ciudad"name="ciudad" required>
-                                <label for="floatingInput1">Ciudad</label>
-                                <div class="invalid-feedback">Por favor, complete este campo.</div>
-                            </div>
-
-                            <div class="mb-3 form-floating text-end">
-                                <button type="submit" class="btn btn-primary">Agregar</button>
-                            </div>	
-                        </form>
+                    <div class="mb-3 form-floating">
+                        <input type="text" class="form-control" id="nombre" placeholder="Nombre" name="nombre" required>
+                        <label for="floatingInput1">Nombre</label>
+                        <div class="invalid-feedback">Por favor, complete este campo.</div>
                     </div>
-                </div>  
+
+                    <div class="mb-3 form-floating">
+                        <input type="text" class="form-control" id="numero_telefonico" placeholder="Numero telefonico"
+                            name="numero_telefonico" required>
+                        <label for="floatingInput1">Numero telefonico</label>
+                        <div class="invalid-feedback">Por favor, complete este campo.</div>
+                    </div>
+
+                    <h5 class="card-title"> Direccion </h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3 form-floating">
+                                <input type="text" class="form-control" id="calle" placeholder="Calle" name="calle"
+                                    required>
+                                <label for="floatingInput1">Calle</label>
+                                <div class="invalid-feedback">Por favor, complete este campo.</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="mb-3 form-floating">
+                                <input type="number" class="form-control" id="numero" placeholder="Numero" name="numero" required min="0">
+                                <label for="floatingInput1">Numero</label>
+                                <div class="invalid-feedback">Por favor, complete este campo.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 form-floating">
+                        <input type="tetx" class="form-control" id="colonia" placeholder="Colonia" name="colonia" required>
+                        <label for="floatingInput1">Colonia</label>
+                        <div class="invalid-feedback">Por favor, complete este campo.</div>
+                    </div>
+
+                    <div class="mb-3 form-floating">
+                        <input type="tetx" class="form-control" id="ciudad" placeholder="Ciudad" name="ciudad" required>
+                        <label for="floatingInput1">Ciudad</label>
+                        <div class="invalid-feedback">Por favor, complete este campo.</div>
+                    </div>
+
+                    <div class="mb-3 form-floating text-end">
+                        <button type="submit" class="btn btn-primary">Agregar</button>
+                    </div>
+                </form>
             </div>
         </div>
-	
-	<?php
-	}
-	if(isset($_GET["opt"]) && $_GET["opt"] == "edit"){
-		if(!isset($_GET["id"]) or $_GET["id"] == ""){
-			Core::addToastr('info','Error');
-			Core::redir("../?view=clientes&opt=all");
-		}
-		
-		$cliente = ClienteData::getByID($_GET["id"]);
-		$found = False;
-		if($cliente!=Null){
-			$found = True;
-		}
-		if($found){
-            $numeros = NumeroTelefonicoData::getbycliente($_GET["id"]);
-            $direccion = DireccionData::getbyID($cliente->id_direccion);
-	?>
+    </div>
+    </div>
+
+    <?php
+}
+if (isset($_GET["opt"]) && $_GET["opt"] == "edit") {
+    if (!isset($_GET["id"]) or $_GET["id"] == "") {
+        Core::addToastr('info', 'Error');
+        Core::redir("../?view=clientes&opt=all");
+    }
+
+    $cliente = ClienteData::getByID($_GET["id"]);
+    $found = False;
+    if ($cliente != Null) {
+        $found = True;
+    }
+    if ($found) {
+        $numeros = NumeroTelefonicoData::getbycliente($_GET["id"]);
+        $direccion = DireccionData::getbyID($cliente->id_direccion);
+        ?>
 
 
 
 
-            <div class=" table-responsive m-4">
+        <div class=" table-responsive m-4">
 
-                <div class="iq-side-content sticky-xl-top d-flex justify-content-between align-items-center">
-                    <h2> Editar cliente > <?php  echo $cliente->nombre; ?> </h2>
-                </div>
-                <br>
+            <div class="iq-side-content sticky-xl-top d-flex justify-content-between align-items-center">
+                <h2> Editar cliente >
+                    <?php echo $cliente->nombre; ?>
+                </h2>
+            </div>
+            <br>
 
-                <div class="card">
+            <div class="card">
                 <div class="card-body">
 
-					<form method="post" action="./?action=clientes&opt=update"  class="needs-validation" novalidate>
+                    <form method="post" action="./?action=clientes&opt=update" class="needs-validation" novalidate>
                         <h5> Datos generales </h5>
 
                         <div class="mb-3 form-floating">
-							<input type="hidden" class="form-control" name="id_cliente" value="<?php  echo$cliente->id_cliente; ?>">
-						</div>
+                            <input type="hidden" class="form-control" name="id_cliente"
+                                value="<?php echo $cliente->id_cliente; ?>">
+                        </div>
 
-						<div class="mb-3 form-floating">
-							<input type="text" class="form-control" name="nombre" value="<?php  echo$cliente->nombre; ?>" required>
-							<label for="floatingInput1">Nombre</label>
+                        <div class="mb-3 form-floating">
+                            <input type="text" class="form-control" name="nombre" value="<?php echo $cliente->nombre; ?>"
+                                required>
+                            <label for="floatingInput1">Nombre</label>
                             <div class="invalid-feedback">Por favor, complete este campo.</div>
-						</div>
+                        </div>
 
                         <div class="mb-3">
-                                <label for="Select" class="form-label mx-1">Estado</label>
-                                <select id="Select" class="form-select" name = "estado" required>
-                                    <option value = "1"  <?php if ($cliente->status ==1) echo "selected" ?>> Activo </option>
-                                    <option value = "0" <?php if ($cliente->status ==0) echo "selected" ?>> Inactivo </option>
+                            <label for="Select" class="form-label mx-1">Estado</label>
+                            <select id="Select" class="form-select" name="estado" required>
+                                <option value="1" <?php if ($cliente->status == 1)
+                                    echo "selected" ?>> Activo </option>
+                                    <option value="0" <?php if ($cliente->status == 0)
+                                    echo "selected" ?>> Inactivo </option>
                                 </select>
                                 <div class="invalid-feedback">Por favor, selecciona un campo.</div>
-                        </div>
-                        
-
-                        <!-- <a a href="./?action=numeros&opt=add&id= <?php echo $cliente->id_cliente;?>"  class="btn btn-warning"> Agregar numero </a> -->
+                            </div>
 
                         <h5> Direccion </h5>
 
                         <div class="mb-3 form-floating">
-							<input type="hidden" class="form-control" name="id_direccion" value="<?php  echo $direccion->id_direccion; ?>">
-						</div>
+                            <input type="hidden" class="form-control" name="id_direccion"
+                                value="<?php echo $direccion->id_direccion; ?>">
+                        </div>
 
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3 form-floating">
-                                    <input type="text" class="form-control" name="calle"  value="<?php  echo$direccion->calle; ?>" required>
+                                    <input type="text" class="form-control" name="calle"
+                                        value="<?php echo $direccion->calle; ?>" required>
                                     <label for="floatingInput1">Calle</label>
                                     <div class="invalid-feedback">Por favor, complete este campo.</div>
                                 </div>
                             </div>
 
-                           <div class="col-md-6">
+                            <div class="col-md-6">
                                 <div class="mb-3 form-floating">
-                                    <input type="text" class="form-control" name="numero" value="<?php  echo$direccion->numero; ?>" required>
+                                    <input type="number" class="form-control" name="numero"
+                                        value="<?php echo $direccion->numero; ?>" required min="0">
                                     <label for="floatingInput1">Numero</label>
                                     <div class="invalid-feedback">Por favor, complete este campo.</div>
                                 </div>
                             </div>
-                         </div>
+                        </div>
 
-						<div class="mb-3 form-floating">
-							<input type="tetx" class="form-control" name="colonia" value="<?php  echo$direccion->colonia; ?>" required>
-							<label for="floatingInput1">Colonia</label>
+                        <div class="mb-3 form-floating">
+                            <input type="tetx" class="form-control" name="colonia" value="<?php echo $direccion->colonia; ?>"
+                                required>
+                            <label for="floatingInput1">Colonia</label>
                             <div class="invalid-feedback">Por favor, complete este campo.</div>
-						</div>
+                        </div>
 
 
-						<div class="mb-3 form-floating">
-							<input type="tetx" class="form-control" name="ciudad" value="<?php  echo$direccion->ciudad; ?>" required>
-							<label for="floatingInput1">Ciudad</label>
+                        <div class="mb-3 form-floating">
+                            <input type="tetx" class="form-control" name="ciudad" value="<?php echo $direccion->ciudad; ?>"
+                                required>
+                            <label for="floatingInput1">Ciudad</label>
                             <div class="invalid-feedback">Por favor, complete este campo.</div>
-						</div>
+                        </div>
 
-						<div class="mb-3 form-floating text-end">
-		    				<button type="submit" class="btn btn-primary">Actualizar datos</button>
-						</div>	
-					</form>
+                        <div class="mb-3 form-floating text-end">
+                            <button type="submit" class="btn btn-primary">Actualizar datos</button>
+                        </div>
+                    </form>
 
                 </div>
-                </div>
+            </div>
 
-                <div class="card">
+            <div class="card">
                 <div class="card-body">
 
-                    <form method="post" action="./?action=numeros&opt=add&id= <?php echo $cliente->id_cliente;?>"  class="needs-validation" novalidate>
+                    <form method="post" action="./?action=numeros&opt=add&id= <?php echo $cliente->id_cliente; ?>"
+                        class="needs-validation" novalidate>
                         <h5> Numeros telefonicos </h5>
                         <div class="mb-3 form-floating">
-							<input type="hidden" class="form-control" name="id_cliente" value="<?php  echo$cliente->id_cliente; ?>">
-						</div>
+                            <input type="hidden" class="form-control" name="id_cliente"
+                                value="<?php echo $cliente->id_cliente; ?>">
+                        </div>
                         <div class="bd-example">
                             <ul class="list-group">
-                                <?php 
-                                    foreach($numeros as $key => $numero){
-                                ?>
+                                <?php
+                                foreach ($numeros as $key => $numero) {
+                                    ?>
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <?php  echo $numero->numero; ?>
-                                        <a href="./?action=numeros&opt=delete&id= <?php echo $numero->id_numero;?>&id_cliente= <?php echo $cliente->id_cliente;?>&"> Quitar </a>
+                                        <?php echo $numero->numero; ?>
+                                        <a
+                                            href="./?action=numeros&opt=delete&id= <?php echo $numero->id_numero; ?>&id_cliente= <?php echo $cliente->id_cliente; ?>&">
+                                            Quitar </a>
                                     </li>
-                                <?php 
-                                    }
+                                <?php
+                                }
                                 ?>
                             </ul>
                         </div>
@@ -300,13 +325,13 @@
                             <div class="invalid-feedback">Por favor, complete este campo.</div>
                         </div>
                     </form>
-                
-                </div>
-                </div>
 
+                </div>
             </div>
 
-<?php
-		}
-	}
+        </div>
+
+        <?php
+    }
+}
 ?>

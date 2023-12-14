@@ -26,7 +26,7 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "all") {
             if (count($listaProductos) > 0) {
                 ?>
 
-                <div class=" table-responsive m-4">
+                <div class=" table-responsive mx-4">
                     <table class="table table-striped">
                         <thead>
                             <tr class="table-primary">
@@ -96,7 +96,7 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "all") {
                 <div class="iq-side-content sticky-xl-top d-flex justify-content-between align-items-center m-4">
                     <h2>Productos inactivos</h2>
                 </div>
-                <div class=" table-responsive m-4">
+                <div class=" table-responsive mx-4">
                     <table class="table table-bordered">
                         <thead>
                             <tr class="table-primary">
@@ -104,7 +104,6 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "all") {
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Precio</th>
                                 <th scope="col">Stock</th>
-                                <th scope="col">Precio</th>
                                 <th scope="col">Proveedor</th>
                                 <th scope="col">Categoria</th>
                                 <th> Acciones </th>
@@ -187,13 +186,13 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "add") {
                     </div>
 
                     <div class="mb-3 form-floating">
-                        <input type="number" class="form-control" name="precio" required>
+                        <input type="number" class="form-control" name="precio" required min="0">
                         <label for="floatingInput1">Precio</label>
                         <div class="invalid-feedback">Por favor, complete este campo.</div>
                     </div>
 
                     <div class="mb-3 form-floating">
-                        <input type="number" class="form-control" name="stock" required>
+                        <input type="number" class="form-control" name="stock" required min="0">
                         <label for="floatingInput1">Stock</label>
                         <div class="invalid-feedback">Por favor, complete este campo.</div>
                     </div>
@@ -284,19 +283,19 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "edit") {
                         <div class="mb-3 form-floating">
                             <input type="hidden" class="form-control" value="<?php echo $prod->id_producto ?>"
                                 name="id_producto">
-
                         </div>
 
 
                         <div class="mb-3 form-floating">
-                            <input type="number" class="form-control" value="<?php echo $prod->precio ?>" name="precio"
-                                required>
+                            <input type="number" class="form-control" value="<?php echo $prod->precio ?>" name="precio" required
+                                min="0">
                             <label for="floatingInput1">Precio</label>
                             <div class="invalid-feedback">Por favor, complete este campo.</div>
                         </div>
 
                         <div class="mb-3 form-floating">
-                            <input type="number" class="form-control" value="<?php echo $prod->stock ?>" name="stock" required>
+                            <input type="number" class="form-control" value="<?php echo $prod->stock ?>" name="stock" required
+                                min="0">
                             <label for="floatingInput1">Stock</label>
                             <div class="invalid-feedback">Por favor, complete este campo.</div>
                         </div>
