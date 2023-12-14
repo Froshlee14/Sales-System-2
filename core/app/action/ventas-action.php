@@ -20,19 +20,38 @@
 			$ve->descuento = $_POST["descuento"];
             $ve->id_cliente = $_POST["id_cliente"];
             $ve->monto = $_POST["monto"];
-			$respuesta = $ve->addvent();
+			
 
 			$dv = new Detalles_VentaData();
 			$dv->id_producto= $_POST["id_producto"];
+			$prod = ProductoData::getByID($_POST["id_producto"]);
 			$dv->cantidad= $_POST["cantidad"];
-			$dv->id_venta= $respuesta[1];
-			$dv->monto= ($_POST["monto"] - $_POST["descuento"]) * $_POST["cantidad"];
+			if($prod->stock >= $_POST["cantidad"]){
+                if($_POST["descuento"]<= $prod->precio){
+                    $respuesta = $ve->addvent();
 
-			$dv->add();
+                    $dv->id_venta= $respuesta[1];
+                    $dv->monto= ($_POST["monto"] - $_POST["descuento"]) * $_POST["cantidad"];
 
-			Core::addToastr('success','Venta realizada con exito');
-			Core::redir("./?view=ventas&opt=all");
+                    $dv->add();
+
+                    $prod->stock = $prod->stock - $_POST["cantidad"];
+                    $prod->update();
+
+                    Core::addToastr('success','Venta realizada con exito');
+                    Core::redir("./?view=ventas&opt=all");
+                }
+                
+                else{
+                    Core::addToastr('warning','El descuento no puede exceder el precio del producto');
+			        Core::redir("./?view=ventas&opt=all");
+                }
+			}
 			
+		else{
+			Core::addToastr('warning','No hay stock suficiente');
+			Core::redir("./?view=ventas&opt=all");
+        }
 	}
 	
 	/*if(isset($_GET["opt"]) && $_GET["opt"] == "update"){
